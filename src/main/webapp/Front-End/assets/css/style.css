@@ -574,6 +574,16 @@ section {
     width: 50%;
   }
 }
+/*--------------------------------------------------------------
+# middle
+about 화면에 글자 진하게 하려고 만든거~
+--------------------------------------------------------------*/
+middle {
+  text-align: left;
+}
+.middle h5 {
+  font-weight: 600;
+}
 
 /*--------------------------------------------------------------
 # Breadcrumbs
@@ -1337,38 +1347,38 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Contact
+# reservation
 --------------------------------------------------------------*/
-.contact .info-box {
+.reservation .info-box {
   color: #444444;
   text-align: center;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.3);
   padding: 20px 0 30px 0;
 }
-.contact .info-box i {
+.reservation .info-box i {
   font-size: 32px;
   color: #106eea;
   border-radius: 50%;
   padding: 8px;
   border: 2px dotted #b3d1fa;
 }
-.contact .info-box h3 {
+.reservation .info-box h3 {
   font-size: 20px;
   color: #777777;
   font-weight: 700;
   margin: 10px 0;
 }
-.contact .info-box p {
+.reservation .info-box p {
   padding: 0;
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
 }
-.contact .php-email-form {
+.reservation .php-email-form {
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.4);
   padding: 30px;
 }
-.contact .php-email-form .error-message {
+.reservation .php-email-form .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -1376,10 +1386,10 @@ section {
   padding: 15px;
   font-weight: 600;
 }
-.contact .php-email-form .error-message br + br {
+.reservation .php-email-form .error-message br + br {
   margin-top: 25px;
 }
-.contact .php-email-form .sent-message {
+.reservation .php-email-form .sent-message {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -1387,13 +1397,13 @@ section {
   padding: 15px;
   font-weight: 600;
 }
-.contact .php-email-form .loading {
+.reservation .php-email-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
-.contact .php-email-form .loading:before {
+.reservation .php-email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1405,26 +1415,26 @@ section {
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
 }
-.contact .php-email-form .form-group {
+.reservation .php-email-form .form-group {
   margin-bottom: 20px;
 }
-.contact .php-email-form input,
-.contact .php-email-form textarea {
+.reservation .php-email-form input,
+.reservation .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
 }
-.contact .php-email-form input:focus,
-.contact .php-email-form textarea:focus {
+.reservation .php-email-form input:focus,
+.reservation .php-email-form textarea:focus {
   border-color: #106eea;
 }
-.contact .php-email-form input {
+.reservation .php-email-form input {
   padding: 10px 15px;
 }
-.contact .php-email-form textarea {
+.reservation .php-email-form textarea {
   padding: 12px 15px;
 }
-.contact .php-email-form button[type="submit"] {
+.reservation .php-email-form button[type="submit"] {
   background: #106eea;
   border: 0;
   padding: 10px 30px;
@@ -1432,7 +1442,7 @@ section {
   transition: 0.4s;
   border-radius: 4px;
 }
-.contact .php-email-form button[type="submit"]:hover {
+.reservation .php-email-form button[type="submit"]:hover {
   background: #3b8af2;
 }
 @-webkit-keyframes animate-loading {
