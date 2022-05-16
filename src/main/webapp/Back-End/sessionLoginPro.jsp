@@ -17,7 +17,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "0909");
 	Statement stmt = conn.createStatement();	
 	ResultSet rs = stmt.executeQuery("SELECT id, pw, name FROM user");
 	
