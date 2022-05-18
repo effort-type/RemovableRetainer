@@ -40,7 +40,7 @@
 				%>
                 <script>
                     alert("인증되었습니다.");
-                    location = "../Front-End/dental.html"
+                    location = "../Front-End/index.html"
                 </script>
                 <%
 				break;
