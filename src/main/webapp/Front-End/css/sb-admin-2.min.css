@@ -11655,3 +11655,14 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
+
+.col-xl-8-jh {
+    flex: 0 0 100%;
+    max-width: 100%
+}
+
+.card-body-jh {
+    flex: 1 1 auto;
+    min-height: 40em;
+    padding: 1.25rem
+}
