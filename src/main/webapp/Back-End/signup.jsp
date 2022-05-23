@@ -5,7 +5,6 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<%@ page import="java.util.Date"%>
 		<!--아이콘-->
         <link rel="icon"
 	        href="https://png.pngtree.com/png-vector/20191016/ourlarge/pngtree-dentist-stomatology-healthy-tooth-vector-icon-png-image_1804160.jpg">
@@ -19,6 +18,7 @@
 		// 입력받은 값 저장
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		String ssn = request.getParameter("ssn");
 		String pw_check = request.getParameter("pw_ch");
 		String name = request.getParameter("name");
 		
@@ -32,12 +32,12 @@
 		// SQL문 저장하고 실행하기 위한 객체 생성
 		Statement stmt = conn.createStatement();
 		// 쿼리 실행, SQL문 SELECT 실행
-		ResultSet rs = stmt.executeQuery("SELECT id, pw, name FROM user");
+		ResultSet rs = stmt.executeQuery("SELECT id, pw, name, ssn FROM test");
 		
 		// PW와 확인PW가 동일한지 체크
 		if(pw.equals(pw_check)) {
-			String sql_insert = "INSERT INTO user(id, pw, name) VALUES";
-			sql_insert += "('" + id + "', '" + pw + "', '" + name + "')";
+			String sql_insert = "INSERT INTO test(id, pw, name, ssn) VALUES";
+			sql_insert += "('" + id + "', '" + pw + "', '" + name + "', '" + ssn + "')";
 			
 			// DB에 저장된 값 중에 입력받은 id와 동일한 id 값이 존재하는지 확인하는 while문
 			while(rs.next()) {
@@ -55,7 +55,7 @@
 					out.print("회원가입 성공");
 					%>
 					<script>
-						location.href = "login.html"
+						location.href = "../Front-End/login.html"
 					</script>
 					<%
 				}

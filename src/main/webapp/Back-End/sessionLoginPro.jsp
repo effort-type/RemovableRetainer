@@ -26,6 +26,10 @@
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	
+	session.setAttribute("id", id);
+	session.setAttribute("pw", pw);
+	
+	
 	String str = "";
 	
 	// 아이디가 존재하는 아이디인지 아닌지 체크하는 변수
