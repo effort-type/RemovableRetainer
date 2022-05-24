@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -16,10 +17,19 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- 채팅 박스 -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+        rel="stylesheet">
+    <link href="css/chatting.css" rel="stylesheet" type="text/css">
+
 
 </head>
 
@@ -88,6 +98,11 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chatting.html">
+                    <i class="fas fa-fw fa-comments"></i>
+                    <span>Chatting</span></a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -111,14 +126,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -135,12 +154,14 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">사용자 이름 나오게 하기</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                                 </a>
@@ -175,36 +196,174 @@
                         <div class="col-xl-8-jh">
 
                             <!-- Chatting -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">채팅하는 상대방 이름 나오게 하기</h6>
-                                </div>
-                                <div class="card-body-jh">
-                                    <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
-                                        <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-                                          <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-                                          <span class="fs-5 fw-semibold">채팅방</span>
-                                        </a>
-                                        <div class="list-group list-group-flush border-bottom scrollarea">
-                                          <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
-                                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                              <strong class="mb-1">담당 의사 이름으로</strong>
-                                              <small>Wed</small>
+                            <div class="container">
+                                <div class="messaging">
+                                    <div class="inbox_msg">
+                                        <div class="inbox_people">
+                                            <div class="headind_srch">
+                                                <div class="recent_heading">
+                                                    <h4>최근 대화 목록</h4>
+                                                </div>
+                                                <div class="srch_bar">
+                                                    <div class="stylish-input-group">
+                                                        <input type="text" class="search-bar" placeholder="Search">
+                                                        <span class="input-group-addon">
+                                                            <button type="button"> <i class="fa fa-search"
+                                                                    aria-hidden="true"></i> </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                                          </a>
-                                          <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
-                                            <div class="d-flex w-100 align-items-center justify-content-between">
-                                              <strong class="mb-1">병원 관리자</strong>
-                                              <small class="text-muted">Tues</small>
+                                            <div class="inbox_chat">
+                                                <div class="chat_list active_chat">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chat_list">
+                                                    <div class="chat_people">
+                                                        <div class="chat_img"> <img
+                                                                src="https://ptetutorials.com/images/user-profile.png"
+                                                                alt="sunil"> </div>
+                                                        <div class="chat_ib">
+                                                            <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                                                            <p>Test, which is a new approach to have all solutions
+                                                                astrology under one roof.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
-                                          </a>
                                         </div>
-                                      </div>
+                                        <div class="mesgs">
+                                            <div class="msg_history">
+                                                <div class="incoming_msg">
+                                                    <div class="incoming_msg_img"> <img
+                                                            src="https://ptetutorials.com/images/user-profile.png"
+                                                            alt="sunil"> </div>
+                                                    <div class="received_msg">
+                                                        <div class="received_withd_msg">
+                                                            <p>Test which is a new approach to have all
+                                                                solutions</p>
+                                                            <span class="time_date"> 11:01 AM | June 9</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="outgoing_msg">
+                                                    <div class="sent_msg">
+                                                        <p>Test which is a new approach to have all
+                                                            solutions</p>
+                                                        <span class="time_date"> 11:01 AM | June 9</span>
+                                                    </div>
+                                                </div>
+                                                <div class="incoming_msg">
+                                                    <div class="incoming_msg_img"> <img
+                                                            src="https://ptetutorials.com/images/user-profile.png"
+                                                            alt="sunil"> </div>
+                                                    <div class="received_msg">
+                                                        <div class="received_withd_msg">
+                                                            <p>Test, which is a new approach to have</p>
+                                                            <span class="time_date"> 11:01 AM | Yesterday</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="outgoing_msg">
+                                                    <div class="sent_msg">
+                                                        <p>Apollo University, Delhi, India Test</p>
+                                                        <span class="time_date"> 11:01 AM | Today</span>
+                                                    </div>
+                                                </div>
+                                                <div class="incoming_msg">
+                                                    <div class="incoming_msg_img"> <img
+                                                            src="https://ptetutorials.com/images/user-profile.png"
+                                                            alt="sunil"> </div>
+                                                    <div class="received_msg">
+                                                        <div class="received_withd_msg">
+                                                            <p>We work directly with our designers and suppliers,
+                                                                and sell direct to you, which means quality, exclusive
+                                                                products, at a price anyone can afford.</p>
+                                                            <span class="time_date"> 11:01 AM | Today</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="type_msg">
+                                                <div class="input_msg_write">
+                                                    <input type="text" class="write_msg" id="msgforsend" placeholder="Type a message" />
+                                                    <button class="msg_send_btn"  type="button" onclick="msgSend()" ><i
+                                                            class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -236,7 +395,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -272,6 +432,9 @@
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/chart-bar-demo.js"></script>
 
+    <!-- 채팅 박스 -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>
