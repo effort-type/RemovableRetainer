@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"  %>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,7 +8,7 @@
 		<!--아이콘-->
         <link rel="icon"
 	        href="https://png.pngtree.com/png-vector/20191016/ourlarge/pngtree-dentist-stomatology-healthy-tooth-vector-icon-png-image_1804160.jpg">
-		<title>회원가입</title>		
+		<title>비밀번호 찾기</title>	
 	</head>
 	<body>
 		<%
@@ -17,10 +17,11 @@
 		
 		// 입력받은 값 저장
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String ssn = request.getParameter("ssn");
-		String pw_check = request.getParameter("pw_ch");
+		String ssn = request.getParameter("ssn");		
 		String name = request.getParameter("name");
+		
+		// 비밀번호를 저장하기 위한 변수
+		String pw = "";
 		
 		// 아이디가 기존에 있는지 없는지 체크하는 변수
 		boolean check = false;
@@ -34,36 +35,30 @@
 		// 쿼리 실행, SQL문 SELECT 실행
 		ResultSet rs = stmt.executeQuery("SELECT id, pw, name, ssn FROM test");
 		
-		// PW와 확인PW가 동일한지 체크
-		if(pw.equals(pw_check)) {
-			String sql_insert = "INSERT INTO test(id, pw, name, ssn) VALUES";
-			sql_insert += "('" + id + "', '" + pw + "', '" + name + "', '" + ssn + "')";
-			
-			// DB에 저장된 값 중에 입력받은 id와 동일한 id 값이 존재하는지 확인하는 while문
-			while(rs.next()) {
-				if(rs.getString("id").equals(id)) {
-					// DB에 동일한 id 값이 존재한다면 true로 변경
-					check = true;
-					break;
-				}
+		while(rs.next()) {
+			if(rs.getString("id").equals(id) && rs.getString("name").equals(name) && rs.getString("ssn").equals(ssn)) {
+				// DB에 동일한 id 값이 존재한다면 true로 변경
+				pw = rs.getString("pw");
+				check = true;				
+				break;
 			}
-			
-			// 기존에 아이디가 DB에 없는 아이디일 경우 실행
-			if(check == false) {
-				int count = stmt.executeUpdate(sql_insert);
-				if(count == 1) {
-					out.print("회원가입 성공");
-					%>
-					<script>
-						location.href = "../Front-End/login.html"
-					</script>
-					<%
-				}
-			} else {
-				out.print("이미 동일한 아이디로 가입되어있습니다.");
-			}
+		}
+		
+		
+		if(check == true)
+		{
+			%>
+			<script>
+				alert("비밀번호 : " + <%=pw%>);
+			</script>			
+			<%
 		} else {
-			out.print("비밀번호가 다릅니다.");
+			%>
+			<script>
+				alert("입력된 정보에 해당하는 정보는 존재하지 않습니다.");
+				location.href = "../Front-End/forgotPassword.html"
+			</script>
+			<%
 		}
 		
 		rs.close();
