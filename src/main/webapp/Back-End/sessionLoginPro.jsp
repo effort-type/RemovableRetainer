@@ -21,21 +21,35 @@
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 	Statement stmt = conn.createStatement();	
-	ResultSet rs = stmt.executeQuery("SELECT id, pw, name FROM user");
+	ResultSet rs = stmt.executeQuery("SELECT id, pw, name FROM test");
 	
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
+	String logout = request.getParameter("logout");
 	
-	session.setAttribute("id", id);
-	session.setAttribute("pw", pw);
-	
-	
-	String str = "";
 	
 	// 아이디가 존재하는 아이디인지 아닌지 체크하는 변수
 	boolean check = false;
 	
-	while(rs.next()) {		
+	if(logout != null) {
+		session.setAttribute("id", null);
+		session.setMaxInactiveInterval(0);
+		
+		check = true;
+		
+		%>
+			<script>
+				alert("로그아웃 되었습니다.");
+				location = "../Front-End/index.html";
+			</script>
+		<%
+	}
+	
+	String str = "";
+	
+
+	
+	while(rs.next() && check == false) {		
 		
 		if(rs.getString("id").equals(id))
 		{
@@ -44,7 +58,15 @@
 				%>
                 <script>
                     alert("인증되었습니다.");
-                    location = "../Front-End/index.html"
+                <%
+	            	session.setAttribute("id", id);
+	            	session.setAttribute("pw", pw);
+	
+	            	// 세션 유지 시간 설정 (30분동안 설정)
+	            	session.setMaxInactiveInterval(10);
+	            	response.sendRedirect("../Front-End/index.jsp");
+                %>
+                    location = "../Front-End/index.jsp"
                 </script>
                 <%
 				break;
