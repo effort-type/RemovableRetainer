@@ -33,13 +33,15 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: ["월", "화", "수", "목", "금", "토", "일"],
         datasets: [{
-            label: "Revenue",
+            label: "착용 시간",
             backgroundColor: "#4e73df",
             hoverBackgroundColor: "#2e59d9",
             borderColor: "#4e73df",
-            data: [3000, 7000, 9000, 14000, 30000, 70000],
+
+            // DB에서 착용 시간 값 불러서 넣기
+            data: [3, 2, 7, 8, 7, 13, 10],
         }],
     },
     options: {
@@ -55,7 +57,7 @@ var myBarChart = new Chart(ctx, {
         scales: {
             xAxes: [{
                 time: {
-                    unit: 'month'
+                    unit: 'day'
                 },
                 gridLines: {
                     display: false,
@@ -70,15 +72,16 @@ var myBarChart = new Chart(ctx, {
                 ticks: {
                     // 그래프 최대 최소값 설정 가능
                     min: 0,
-                    max: 30000,
+                    max: 24,
                     maxTicksLimit: 5,
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function(value, index, values) {
-                        return '$' + number_format(value);
+                        return number_format(value) + ' 시간';
                     }
                 },
                 gridLines: {
+                    // 목표 달성치 선 색
                     color: "rgb(234, 236, 244)",
                     zeroLineColor: "rgb(234, 236, 244)",
                     drawBorder: false,
@@ -107,7 +110,7 @@ var myBarChart = new Chart(ctx, {
             callbacks: {
                 label: function(tooltipItem, chart) {
                     var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                    return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '시간';
                 }
             }
         },
