@@ -50,18 +50,8 @@
   	                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>051-890-1724</span></i>
   	                </div>
   	                <div class="social-links d-none d-md-flex align-items-center">
-  	                    
-  	                    <form action="dental.jsp" method="post">	
-  	                    	<%
 
-		  	  	            	// 세션 유지 시간 설정 (30분동안 설정)
-		  	  	            	session.setMaxInactiveInterval(3000);
-		  	  	            	response.sendRedirect("dental.jsp");
-  	                    	%>
-  	                    	
-  	                    	<a href="dental.jsp" class="instagram">덴탈케어</a>
-  	                    </form> 	                    
-  	            
+		  	  	        <a href="dental.jsp" class="instagram">덴탈케어</a>  	            
   	            		<%=id %>님
 		  	        	<form action="../Back-End/sessionLoginPro.jsp" method="post" class="form-inline" role="form">
 		  	            	<button onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
