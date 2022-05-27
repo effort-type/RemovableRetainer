@@ -182,17 +182,20 @@
 							<div class="table-responsive">
 
 								<%
-        Class.forName("com.mysql.jdbc.Driver");
-													try{
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-		Statement stmt = conn.createStatement();	
-		ResultSet rs = stmt.executeQuery("SELECT user_id,user_name,device_start,device_end FROM user"); %>
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+        						Class.forName("com.mysql.jdbc.Driver");
+								try{
+									Connection conn = DriverManager.getConnection
+											("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+									Statement stmt = conn.createStatement();	
+									ResultSet rs = stmt.executeQuery
+											("SELECT user_id,user_name,device_type,device_start,device_end FROM user"); 
+								%>
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>아이디</th>
 											<th>이름</th>
+											<th>착용 기기</th>
 											<th>착용 시작일</th>
 											<th>착용 종료일</th>
 											<th>삭제</th>
@@ -203,6 +206,7 @@
 										<tr>
 											<th>아이디</th>
 											<th>이름</th>
+											<th>착용 기기</th>
 											<th>착용 시작일</th>
 											<th>착용 종료일</th>
 											<th>삭제</th>
@@ -216,8 +220,15 @@
 									<%
 									while(rs.next()){
 									%>	<tr>
-											<th><a href="#"><%=rs.getString("user_id") %></a></th>
-											<td><%=rs.getString("user_name") %></td>
+											<th><%=rs.getString("user_id") %></th>
+											<td><a href="#"><%=rs.getString("user_name") %></a></td>
+											<% //db값 바꾼다면 수정해야해요~
+											if(rs.getString("device_type").equals("O")){
+												%><td>가철식 교정 유지장치</td><%
+											} else{
+												%><td>페이스마스크</td><%
+											}
+											%>
 											<td><%=rs.getString("device_start") %></td>
 											<td><%=rs.getString("device_end") %></td>
 											<td><a href="https://hahahia.tistory.com/93">삭제</a></td>
