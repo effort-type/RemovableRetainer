@@ -76,9 +76,9 @@
 		
 		            <!-- Nav Item - Pages Collapse Menu -->
 		            <li class="nav-item">
-		                <a class="nav-link" href="#">
+		                <a class="nav-link" href="CreatePatientAccount.jsp">
 		                    <i class="fas fa-fw fa-cog"></i>
-		                    <span>Change Password</span>
+		                    <span>Create Patient Account</span>
 		                </a>
 		                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 		                    <div class="bg-white py-2 collapse-inner rounded">
