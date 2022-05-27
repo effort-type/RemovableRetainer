@@ -40,7 +40,7 @@
 		        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 		
 		            <!-- Sidebar - Brand -->
-		            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dental.jsp">
+		            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index_Success.jsp">
 		                <!--교정의 민족 로고 이미지-->
 		                <div class="sidebar-brand-icon">
 		                    <img src="https://ifh.cc/g/HRCfNv.png" width="140" height="40" />

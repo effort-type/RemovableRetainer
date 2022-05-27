@@ -63,7 +63,7 @@
   	        <!-- ======= Header ======= -->
   	        <header id="header" class="d-flex align-items-center">
   	            <div class="container d-flex align-items-center justify-content-between">
-  	                <a href="index.html" class="logo"><img src='https://ifh.cc/g/lbBVnh.png' border='0'></a>
+  	                <a href="index_Success.jsp" class="logo"><img src='https://ifh.cc/g/lbBVnh.png' border='0'></a>
   	                <nav id="navbar" class="navbar">
   	                    <ul>
   	                        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
@@ -600,7 +600,7 @@
   	                            <!--<h3>BizLand<span>.</span></h3>-->
   	                            <!--<a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""height="40"width="140"></a>
   	            https://ifh.cc/g/lbBVnh.png-->
-  	                            <a href="index.html"><img src="assets/img/favicon.png" alt="교정의민족로고"></a>
+  	                            <a href="index_Success.jsp"><img src="assets/img/favicon.png" alt="교정의민족로고"></a>
   	                            <p>
   	                                <br> 엄광로 176 <br> KOREA, Busan<br>
   	                                <!--United States <br>--><br>
@@ -609,7 +609,7 @@
   	                            </p>
   	                        </div>
   	                        <div class="col-lg-1 col-md-6 footer-contact">
-  	                            <a href="index.html"><img src="assets/img/team/team-4.jpg" alt="교정의민족로고" height="90" width="80"></a>
+  	                            <a href="index_Success.jsp"><img src="assets/img/team/team-4.jpg" alt="교정의민족로고" height="90" width="80"></a>
   	                            <br>
   	                            <p>
   	                                <br>
@@ -618,7 +618,7 @@
   	                            </p>
   	                        </div>
   	                        <div class="col-lg-1 col-md-6 footer-contact">
-  	                            <a href="index.html"><img src="assets/img/team/team-3.jpg" alt="교정의민족로고" height="90" width="80"></a>
+  	                            <a href="index_Success.jsp"><img src="assets/img/team/team-3.jpg" alt="교정의민족로고" height="90" width="80"></a>
   	                            <br>
   	                            <p>
   	                                <br>
@@ -627,7 +627,7 @@
   	                            </p>
   	                        </div>
   	                        <div class="col-lg-1 col-md-6 footer-contact">
-  	                            <a href="index.html"><img src="assets/img/team/team-2.jpg" alt="교정의민족로고" height="90" width="80"></a>
+  	                            <a href="index_Success.jsp"><img src="assets/img/team/team-2.jpg" alt="교정의민족로고" height="90" width="80"></a>
   	                            <br>
   	                            <p>
   	                                <br>
@@ -636,7 +636,7 @@
   	                            </p>
   	                        </div>
   	                        <div class="col-lg-1 col-md-6 footer-contact">
-  	                            <a href="index.html"><img src="assets/img/team/team-1.jpg" alt="교정의민족로고" height="90" width="80"></a>
+  	                            <a href="index_Success.jsp"><img src="assets/img/team/team-1.jpg" alt="교정의민족로고" height="90" width="80"></a>
   	                            <br>
   	                            <p>
   	                                <br>

@@ -64,9 +64,9 @@
 	
 	            	// 세션 유지 시간 설정 (30분동안 설정)
 	            	session.setMaxInactiveInterval(30);
-	            	response.sendRedirect("../Front-End/index.jsp");
+	            	response.sendRedirect("../Front-End/index_Success.jsp");
                 %>
-                    location = "../Front-End/index.jsp"
+                    location = "../Front-End/index_Success.jsp"
                 </script>
                 <%
 				break;
