@@ -54,7 +54,7 @@
 		  	  	        <a href="dental.jsp" class="instagram">덴탈케어</a>  	            
   	            		<%=id %>님
 		  	        	<form action="../Back-End/sessionLoginPro.jsp" method="post" class="form-inline" role="form">
-		  	            	<button onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
+		  	            	<button name="logout" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
 		  	            </form>
   	                </div>
   	            </div>
