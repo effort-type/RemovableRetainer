@@ -43,20 +43,28 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	
+	try{
+		// JVM 메모리에 클래스 파일 업로드
+		Class.forName("com.mysql.jdbc.Driver");
+		// DB연결
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+		//세션의 id이용하여 쿼리문 작성
+		String str_Query = "SELECT * FROM test WHERE id = ?";
+		//Statement stmt = conn.createStatement();
+		PreparedStatement pstmt = conn.prepareStatement(str_Query);
+		pstmt.setString(1, id);
+		//pstmt.executeUpdate();
+		// 쿼리 실행, SQL문 SELECT 실행	
+		ResultSet rs = pstmt.executeQuery();
+		
+		String dbId = null;
+		String dbName = null;
+		
+		if(rs.next()) {
+			dbId = rs.getString("id");
+			dbName = rs.getString("name");
+		}
 	
-	// JVM 메모리에 클래스 파일 업로드
-	Class.forName("com.mysql.jdbc.Driver");
-	// DB연결
-	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-	// SQL문 저장하고 실행하기 위한 객체 생성
-	Statement stmt = conn.createStatement();
-	//세션의 id이용하여 쿼리문 작성
-	String str_Query = "SELECT id, name FROM test WHERE id = '" + id + "'" 
-	// 쿼리 실행, SQL문 SELECT 실행	
-	ResultSet rs = stmt.executeQuery(str_Query);
-	
-	String dbId = request.getParameter("id");
-	String dbName = request.getParameter("name");
 	%>
 	
 	<!-- Page Wrapper -->
@@ -210,6 +218,12 @@
 					<div>
 						ID : <%= dbId %>
 						이름 : <%= dbName %>
+						병원 : 
+						담당의사 :
+						유지장치 종류 : 
+						유지장치 시작일 :
+						유지장치 종료일 :
+						
 					</div>
 					
 					 
@@ -286,9 +300,15 @@
 	<script src="js/demo/chart-bar-demo.js"></script>
 	
 	<%
-	rs.close();
-	stmt.close();
-	conn.close();
+		rs.close();
+		pstmt.close();
+		conn.close();
+	
+	}catch(ClassNotFoundException e){
+		out.println(e);
+	}catch(SQLException e){
+		out.println(e);
+	}
 	%>
 </body>
 
