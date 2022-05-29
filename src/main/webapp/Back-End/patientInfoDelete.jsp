@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
