@@ -35,6 +35,10 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+
+
+
+
 </head>
 
 <body id="page-top">
@@ -218,19 +222,23 @@
 					<div>
 						ID : <%= dbId %>
 						이름 : <%= dbName %>
+						주민번호 : 
 						병원 : 
 						담당의사 :
 						유지장치 종류 : 
-						유지장치 시작일 :
-						유지장치 종료일 :
+						유지장치 착용 시작일 :
+						유지장치 착용 종료일 :
+						하루 착용 목표 시간 :
+						전화번호 : 
+						주소 : 
+						보호자 전화번호 : 
 						
 					</div>
-					
+					<div class="col-md-2">
+						<!-- 개인정보 수정하는 페이지로 이동하는 버튼  -->
+						<a href="UserProfileCorrection.jsp" class="btn btn-primary">수정</a>
+					</div>
 					 
-					
-					
-
-
 				</div>
 				<!-- /.container-fluid -->
 
@@ -281,6 +289,18 @@
 		</div>
 	</div>
 
+	<%
+		rs.close();
+		pstmt.close();
+		conn.close();
+	
+	}catch(ClassNotFoundException e){
+		out.println(e);
+	}catch(SQLException e){
+		out.println(e);
+	}
+	%>
+	
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -299,17 +319,6 @@
 	<script src="js/demo/chart-pie-demo.js"></script>
 	<script src="js/demo/chart-bar-demo.js"></script>
 	
-	<%
-		rs.close();
-		pstmt.close();
-		conn.close();
-	
-	}catch(ClassNotFoundException e){
-		out.println(e);
-	}catch(SQLException e){
-		out.println(e);
-	}
-	%>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ page import="java.sql.*"  %>
 
 <%
 	String id = (String)session.getAttribute("id");	
@@ -33,10 +35,42 @@
 <!-- Custom styles for this template-->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+
+
+
+
 </head>
 
 <body id="page-top">
-
+	<%
+	// post 전송 데이터 한글 처리
+	request.setCharacterEncoding("UTF-8");
+	
+	
+	try{
+		// JVM 메모리에 클래스 파일 업로드
+		Class.forName("com.mysql.jdbc.Driver");
+		// DB연결
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+		//세션의 id이용하여 쿼리문 작성
+		String str_Query = "SELECT * FROM test WHERE id = ?";
+		//Statement stmt = conn.createStatement();
+		PreparedStatement pstmt = conn.prepareStatement(str_Query);
+		pstmt.setString(1, id);
+		//pstmt.executeUpdate();
+		// 쿼리 실행, SQL문 SELECT 실행	
+		ResultSet rs = pstmt.executeQuery();
+		
+		String dbId = null;
+		String dbName = null;
+		
+		if(rs.next()) {
+			dbId = rs.getString("id");
+			dbName = rs.getString("name");
+		}
+	
+	%>
+	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -77,7 +111,7 @@
 			</a></li>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item active"><a class="nav-link"
+			<li class="nav-item"><a class="nav-link"
 				href="CreatePatientAccount.jsp"> <i class="fas fa-fw fa-cog"></i>
 					<span>Create Patient Account</span>
 			</a>
@@ -183,9 +217,9 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">환자 계정 할당</h1>
+						<h1 class="h3 mb-0 text-gray-800">개인 정보 수정</h1>
 					</div>
-
+					
 					<div id="formContent" class="container">
 						<!-- Tabs Titles -->
 						<!-- Icon -->
@@ -200,39 +234,45 @@
 						<form action="../Back-End/CreatePatientAccountPro.jsp" method="post"
 							class="form-inline" role="form">
 							<div class="form-group">
-								<div class="col-md-12">
-									<input type="text" class="form-control" name="id"
-										placeholder="ID">
-								</div>
-								<div class="col-md-12">
-									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
-									<input type="password" class="form-control" name="pw"
+							<div class="col-md-12">
+									현재 패스워드 : <input type="password" class="form-control" name="pw"
 										placeholder="PW" minlength="4" maxlength="8">
 								</div>
 								<div class="col-md-12">
 									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
-									<input type="password" class="form-control" name="pw_ch"
+									수정할 패스워드 : <input type="password" class="form-control" name="pw"
+										placeholder="PW" minlength="4" maxlength="8">
+								</div>
+								<div class="col-md-12">
+									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
+									패스워드 확인 : <input type="password" class="form-control" name="pw_ch"
 										placeholder="PW 확인" minlength="4" maxlength="8">
 								</div>
 								<div class="col-md-12">
-									<input type="text" class="form-control" name="name"
-										placeholder="이름">
+									목표 시간 : <input type="text" class="form-control" name="id"
+										placeholder="목표 시간">
 								</div>
 								<div class="col-md-12">
-									<!--주민등록번호 13자리 -->
-									<input type="password" class="form-control" name="ssn"
-										placeholder="주민등록번호" minlength="13" maxlength="13">
+									전화 번호 : <input type="text" class="form-control" name="name"
+										placeholder="전화 번호">
 								</div>
-								<div class="col-md-6">
-									<button type="submit" class="btn btn-primary col-md-10">회원
-										등록</button>
+								<div class="col-md-12">
+									보호자 전화 번호 : <input type="text" class="form-control" name="name"
+										placeholder="보호자 전화 번호">
+								</div>
+								<div class="col-md-12">
+									주소 : <input type="text" class="form-control" name="ssn"
+										placeholder="주소" minlength="13" maxlength="13">
+								</div>
+								<div class="col-md-4">
+									<button type="submit" class="btn btn-primary">수정 완료</button>
 								</div>
 							</div>
 						</form>
 
 					</div>
-
-
+					
+					 
 				</div>
 				<!-- /.container-fluid -->
 
@@ -283,6 +323,18 @@
 		</div>
 	</div>
 
+	<%
+		rs.close();
+		pstmt.close();
+		conn.close();
+	
+	}catch(ClassNotFoundException e){
+		out.println(e);
+	}catch(SQLException e){
+		out.println(e);
+	}
+	%>
+	
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -300,17 +352,17 @@
 	<script src="js/demo/chart-area-demo.js"></script>
 	<script src="js/demo/chart-pie-demo.js"></script>
 	<script src="js/demo/chart-bar-demo.js"></script>
-
+	
 </body>
 
 </html>
 <%
 	} else {
 		%>
-<script>
+			<script>
 				alert('로그인이 필요한 페이지입니다.');
 				location = "login.html"
 			</script>
 <%
 	}
-		%>
+%>
