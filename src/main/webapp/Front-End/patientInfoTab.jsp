@@ -231,8 +231,8 @@
 											%>
 											<td><%=rs.getString("device_start") %></td>
 											<td><%=rs.getString("device_end") %></td>
-											<td><a href="https://hahahia.tistory.com/93">삭제</a></td>
-											<td><a href="#">수정</a></td>
+											<td><a href="../Back-End/PatientInfoDelete.jsp?user_id=<%=rs.getString("user_id") %>">삭제</a></td>
+											<td><a href="https://hahahia.tistory.com/93">수정</a></td>
 										</tr>
 									<%
 									}	
