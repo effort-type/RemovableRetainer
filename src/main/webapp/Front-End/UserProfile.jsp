@@ -63,10 +63,21 @@
 		
 		String dbId = null;
 		String dbName = null;
+		String dbSSN = null;
+		String dbTargetTime = null;
+		String dbPhoneNum = null;
+		String dbProtectorPhoneNum = null;
+		String dbAddress = null;
 		
 		if(rs.next()) {
 			dbId = rs.getString("id");
 			dbName = rs.getString("name");
+			dbSSN = rs.getString("ssn");
+			dbTargetTime = rs.getString("targettime");
+			dbPhoneNum = rs.getString("phonenum");
+			dbProtectorPhoneNum = rs.getString("protectorphonenum");
+			dbAddress = rs.getString("address");
+			//후에 DB속성 추가후 더 넣어야함
 		}
 	
 	%>
@@ -228,10 +239,45 @@
 						유지장치 종류 : 
 						유지장치 착용 시작일 :
 						유지장치 착용 종료일 :
-						하루 착용 목표 시간 :
-						전화번호 : 
-						주소 : 
-						보호자 전화번호 : 
+						
+						 
+						<div class="card shadow mb-4">
+						<div class="card-body">
+								
+								
+								<table class="table table-bordered" id="patientTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th colspan="6" style="background-color:#c4cde7; color:#18181a;">
+											<%=dbName %> </th>
+										</tr>
+									</thead>
+									<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
+
+									<tbody>
+									<tr>
+										<th>ID</th>
+											<td><%=dbId %></td>
+										<th>주민 번호</th>
+											<td><%=dbSSN %></td>
+										<th>하루 착용 목표 시간</th>
+											<td><%=dbTargetTime %></td>
+									</tr>
+									<tr>
+										<th>전화번호</th>
+											<td><%=dbPhoneNum %></td>
+										<th>보호자 전화번호</th>
+											<td><%=dbProtectorPhoneNum %></td>
+									</tr>
+									<tr>
+										<th>주소</th>
+											<td><%=dbAddress %></td>
+									</tr>
+										
+									</tbody>
+								</table>
+							</div>
+					</div>
 						
 					</div>
 					<div class="col-md-2">

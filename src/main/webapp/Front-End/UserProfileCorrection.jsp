@@ -57,16 +57,21 @@
 		//Statement stmt = conn.createStatement();
 		PreparedStatement pstmt = conn.prepareStatement(str_Query);
 		pstmt.setString(1, id);
-		//pstmt.executeUpdate();
 		// 쿼리 실행, SQL문 SELECT 실행	
 		ResultSet rs = pstmt.executeQuery();
 		
-		String dbId = null;
-		String dbName = null;
+		String dbPw = null;
+		String dbTargetTime = null;
+		String dbPhoneNum = null;
+		String dbProtectorPhoneNum = null;
+		String dbAddress = null;
 		
 		if(rs.next()) {
-			dbId = rs.getString("id");
-			dbName = rs.getString("name");
+			dbPw = rs.getString("pw");
+			dbTargetTime = rs.getString("targettime");
+			dbPhoneNum = rs.getString("phonenum");
+			dbProtectorPhoneNum = rs.getString("protectorphonenum");
+			dbAddress = rs.getString("address");
 		}
 	
 	%>
@@ -231,45 +236,46 @@
 
 						<!-- signup Form -->
 
-						<form action="../Back-End/CreatePatientAccountPro.jsp" method="post"
+						<form action="../Back-End/UserProfileCorrectionPro.jsp" method="post"
 							class="form-inline" role="form">
 							<div class="form-group">
 							<div class="col-md-12">
-									현재 패스워드 : <input type="password" class="form-control" name="pw"
+									현재 패스워드 : <input type="password" class="form-control" name="nowpw"
+										placeholder="PW" minlength="4" maxlength="8" required>
+								</div>
+								<div class="col-md-12">
+									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
+									수정할 패스워드 : <input type="password" class="form-control" name="corpw"
 										placeholder="PW" minlength="4" maxlength="8">
 								</div>
 								<div class="col-md-12">
 									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
-									수정할 패스워드 : <input type="password" class="form-control" name="pw"
-										placeholder="PW" minlength="4" maxlength="8">
-								</div>
-								<div class="col-md-12">
-									<!--비밀번호 최소 4자리, 최대 8자리 입력하도록 제한 -->
-									패스워드 확인 : <input type="password" class="form-control" name="pw_ch"
+									패스워드 확인 : <input type="password" class="form-control" name="corpwcheck"
 										placeholder="PW 확인" minlength="4" maxlength="8">
 								</div>
 								<div class="col-md-12">
-									목표 시간 : <input type="text" class="form-control" name="id"
-										placeholder="목표 시간">
+									목표 시간 : <input type="text" class="form-control" name="targettime"
+										placeholder="목표 시간" value="<%=dbTargetTime%>" required>
 								</div>
 								<div class="col-md-12">
-									전화 번호 : <input type="text" class="form-control" name="name"
-										placeholder="전화 번호">
+									전화 번호 : <input type="text" class="form-control" name="phonenum"
+										placeholder="전화 번호" value="<%=dbPhoneNum%>" required>
 								</div>
 								<div class="col-md-12">
-									보호자 전화 번호 : <input type="text" class="form-control" name="name"
-										placeholder="보호자 전화 번호">
+									보호자 전화 번호 : <input type="text" class="form-control" name="protectorphonenum"
+										placeholder="보호자 전화 번호" value="<%=dbProtectorPhoneNum%>" required>
 								</div>
 								<div class="col-md-12">
-									주소 : <input type="text" class="form-control" name="ssn"
-										placeholder="주소" minlength="13" maxlength="13">
+									주소 : <input type="text" class="form-control" name="address"
+										placeholder="주소" minlength="1" maxlength="30" value="<%=dbAddress%>" required>
 								</div>
 								<div class="col-md-4">
-									<button type="submit" class="btn btn-primary">수정 완료</button>
+									<!-- <button type="submit" class="btn btn-primary">수정 완료</button> -->
+									<input type="submit" class="btn btn-primary pull-right" value="수정" onclick="return confirm('환자 정보를 수정합니다.')">
 								</div>
 							</div>
 						</form>
-
+						
 					</div>
 					
 					 
