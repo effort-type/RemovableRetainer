@@ -31,7 +31,7 @@
 		
 		</head>
 		
-		<body id="page-top">
+		<body id="page-top" onload="chartApi.displayChart()">
 		
 		    <!-- Page Wrapper -->
 		    <div id="wrapper">
