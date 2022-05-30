@@ -158,124 +158,89 @@
 
 						<!-- Begin Page Content -->
 						<div class="container-fluid">
-							<% String hospital_id=request.getParameter("hospital_id"); try{
-								Class.forName("com.mysql.jdbc.Driver"); Connection conn=DriverManager.getConnection
-								("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root" , "1234" ); String
-								sql="SELECT * FROM hospital WHERE hospital_id=?" ; PreparedStatement
-								pstmt=conn.prepareStatement(sql); pstmt.setString(1, hospital_id); ResultSet
-								rs=pstmt.executeQuery(); %>
+							<% 
+							String hospital_id=request.getParameter("hospital_id"); 
+								try{
+								Class.forName("com.mysql.jdbc.Driver"); 
+								Connection conn=DriverManager.getConnection
+								("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root" , "1234" ); 
+								String sql="SELECT * FROM hospital WHERE hospital_id=?" ; 
+								PreparedStatement pstmt=conn.prepareStatement(sql); 
+								pstmt.setString(1, hospital_id); 
+								ResultSet rs=pstmt.executeQuery(); %>
 								<form mehod="post"
 									action="../Back-End/hospitalInfoUpdate.jsp?hospital_id=<%=hospital_id %>">
 									<!-- Page Heading -->
 									<% while(rs.next()){ %>
 										<h1 class="h3 mb-2 text-gray-800">
-											<%=rs.getString("user_name") %>
+											<%=rs.getString("hospital_name") %>
 										</h1>
 
 										<!-- DataTales Example -->
 										<div class="card shadow mb-4">
 											<div class="card-body">
-
-
-												<table class="table table-bordered" id="patientTable" width="100%"
+											<table class="table table-bordered" id="hospitalTable" width="100%"
 													height="500" cellspacing="0">
 													<thead>
 														<tr>
 															<th colspan="6"
 																style="background-color:#c4cde7; color:#18181a;">
-																환자 정보</th>
+																병원 정보</th>
 														</tr>
 													</thead>
 													<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
 
 													<tbody>
 														<tr>
-															<th style="background-color: #eeeeee;">이름</th>
+															<th style="background-color: #eeeeee;">병원명</th>
 															<td>
-																<input type="text" class="form-control" placeholder="이름"
-																	name="user_name" value="<%=rs.getString("
-																	user_name") %>" required>
+																<input type="text" class="form-control" placeholder="병원명" name="hospital_name" 
+																	value="<%=rs.getString("hospital_name") %>" required>
 															</td>
 															<th style="background-color: #eeeeee;">아이디</th>
 															<th>
 																<input type="text" class="form-control"
-																	placeholder="아이디" name="user_id"
-																	value="<%=rs.getString(" user_id") %>" readonly>
+																	placeholder="아이디" name="hospital_id"
+																	value="<%=rs.getString("hospital_id") %>" readonly>
 															</th>
 															<th style="background-color: #eeeeee;">비밀번호</th>
 															<td><input type="password" class="form-control"
-																	placeholder="비번" name="user_pw"
-																	value="<%=rs.getString(" user_pw") %>" readonly>
+																	placeholder="비번" name="hospital_pw"
+																	value="<%=rs.getString("hospital_pw") %>" readonly>
 															</td>
 														</tr>
 														<tr>
-															<th style="background-color: #eeeeee;">주민번호</th>
+															<th style="background-color: #eeeeee;">병원장 이름</th>
 															<th><input type="text" class="form-control"
-																	placeholder="주민번호" name="user_ssn"
-																	value="<%=rs.getString(" user_ssn") %>" readonly>
-															</th>
-															<th style="background-color: #eeeeee;">환자 연락처</th>
-															<th><input type="text" class="form-control"
-																	placeholder="010-0000-0000" name="user_phone"
-																	value="<%=rs.getString(" user_phone") %>" required>
-															</th>
-															<th style="background-color: #eeeeee;">보호자 연락처</th>
-															<th><input type="text" class="form-control"
-																	placeholder="010-0000-0000" name="family_phone"
-																	value="<%=rs.getString(" family_phone") %>"></th>
-														</tr>
-														<tr>
-															<th style="background-color: #eeeeee;">담당 의사</th>
-															<th><input type="text" class="form-control"
-																	placeholder="담당 의사 아이디" name="doctor_id"
-																	value="<%=rs.getString(" doctor_id") %>" required>
+																	placeholder="병원장 이름" name="head_name"
+																	value="<%=rs.getString("head_name") %>" required>
 															</th>
 															<th style="background-color: #eeeeee;">주소</th>
 															<th colspan="3"><textarea class="form-control"
-																	placeholder="주소" name="user_address"
-																	maxlangth="512"><%=rs.getString("user_address") %></textarea>
+																	placeholder="주소" name="hospital_address"
+																	maxlangth="512" required><%=rs.getString("hospital_address") %></textarea>
 															</th>
 														</tr>
 														<tr>
-															<th style="background-color: #eeeeee;">착용 기기</th>
-															<% //db값 바꾼다면 수정해야해요~
-																if(rs.getString("device_type").equals("O")){%>
-																<td><input type="text" class="form-control"
-																		placeholder="착용 기기" name="device_type"
-																		value="가철식 교정 유지장치" readonly></td>
-																<%} else{%>
-																	<td><input type="text" class="form-control"
-																			placeholder="착용 기기" name="device_type"
-																			value="페이스마스크" readonly></td>
-																	<%}%>
+															<th style="background-color: #eeeeee;">병원 전화 번호</th>
+																<th><input type="text" class="form-control"
+																	placeholder="병원 전화 번호" name="hospital_phone"
+																	value="<%=rs.getString("hospital_phone") %>" required>
+															</th>
+															<th style="background-color: #eeeeee;">사업자 번호</th>
+															<td colspan="3">
+																<input type="text" class="form-control"
+																	placeholder="사업자 번호" name="business_num"
+																	value="<%=rs.getString("business_num") %>" required>
 
-																		<th style="background-color: #eeeeee;">착용 시작일
-																		</th>
-																		<td colspan="3"> <input type='date'
-																				class="form-control" name='device_start'
-																				placeholder="yyyy-mm-dd"
-																				value="<%=rs.getString(" device_start")
-																				%>" readonly></td>
-														</tr>
-														<tr>
-															<th style="background-color: #eeeeee;">목표 시간</th>
-															<!-- 목표시간 변수로 변경해야함  -->
-															<td><input type='number' class="form-control"
-																	name='device_type_facemask' placeholder="n"
-																	value="<%=rs.getString(" device_type_facemask") %>">
-															</td>
-															<th style="background-color: #eeeeee;">착용 종료일</th>
-															<td colspan="3"><input type='date' class="form-control"
-																	name='device_end' placeholder="yyyy-mm-dd"
-																	value="<%=rs.getString(" device_end") %>" required>
 															</td>
 														</tr>
 														<tr>
 															<th colspan="6" style="text-align: center;">
 																<input type="submit" class="btn btn-primary pull-right"
 																	value="수정"
-																	onclick="return confirm('환자 정보를 수정합니다.')">
-																<a href="../Front-End/patientInfoTab.jsp"
+																	onclick="return confirm('병원 정보를 수정합니다.')">
+																<a href="../Front-End/hospitalInfoTab.jsp"
 																	class="btn btn-primary">확인</a>
 															</th>
 														</tr>
