@@ -1,11 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*"  %>
     <%
-	session.setMaxInactiveInterval(3000);
+    request.setCharacterEncoding("UTF-8");
+    
+    session.setMaxInactiveInterval(3000);
 	String id = (String)session.getAttribute("id");
 	String pw = (String)session.getAttribute("pw");
 	
 	if(id != null) {
+		
+		ArrayList<Integer> times = new ArrayList<>();
+		try{			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+			Statement stmt = conn.createStatement();	
+			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
+			
+			//String id = request.getParameter("id");
+			
+			
+			
+			while(rs.next()) { 
+				if(times.size() >= 7) {
+					times.set(0, times.get(0) + rs.getInt("mon"));
+				} else {
+					times.add(rs.getInt("mon"));
+					times.add(rs.getInt("tue"));
+					times.add(rs.getInt("wed"));
+					times.add(rs.getInt("thu"));
+					times.add(rs.getInt("fri"));
+					times.add(rs.getInt("sat"));
+					times.add(rs.getInt("sun"));	
+				}
+				
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			
+		}
+		
+		
+// 		finally {
+// 			if(rs != null)
+// 				rs.close();
+// 			if(stmt != null)
+// 				stmt.close();
+// 			if(conn != null)
+// 				conn.close();
+// 		}
+		
 		%>
         <!DOCTYPE html>
         <html lang="ko">
@@ -29,61 +78,76 @@
 
             <!-- Custom styles for this template-->
             <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+            
+            <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="js/demo/chart-bar-demo.js"></script>
         </head>
+
+		<script>
+			let chartData = [];
+			
+			
+			<%
+				for(int i : times) {%>
+				
+					chartData.push(<%= i %>);
+					
+				<%}%>
+			alert(chartData);
+		</script>
 		
-		<body id="page-top">
-		
-		    <!-- Page Wrapper -->
-		    <div id="wrapper">
-		
-		        <!-- Sidebar -->
-		        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
-		
-		            <!-- Sidebar - Brand -->
-		            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index_Success.jsp">
-		                <!--교정의 민족 로고 이미지-->
-		                <div class="sidebar-brand">
-		                    <img src="https://ifh.cc/g/HRCfNv.png" width="140" height="40" />
-		                </div>
-		            </a>
-		
-		            <!-- Divider -->
-		            <hr class="sidebar-divider my-0">
-		
-		            <!-- Nav Item - Dashboard -->
-		            <li class="nav-item active">
-		                <a class="nav-link" href="dental.jsp">
-		                    <i class="fas fa-fw fa-tachometer-alt"></i>
-		                    <span>Dashboard</span></a>
-		            </li>
-		
-		            <!-- Divider -->
-		            <hr class="sidebar-divider">
-		
-		
-		            <!-- Nav Item - Charts -->
-		            <li class="nav-item">
-		                <a class="nav-link" href="charts.jsp">
-		                    <i class="fas fa-fw fa-chart-area"></i>
-		                    <span>Charts</span></a>
-		            </li>
-		
-		            <!-- Nav Item - Tables -->
-		            <li class="nav-item">
-		                <a class="nav-link" href="tables.jsp">
-		                    <i class="fas fa-fw fa-table"></i>
-		                    <span>Tables</span></a>
-		            </li>
-		
-		            <!-- Nav Item - Pages Collapse Menu -->
-		            <li class="nav-item">
-		                <a class="nav-link" href="CreatePatientAccount.jsp">
-		                    <i class="fas fa-fw fa-cog"></i>
-		                    <span>Create Patient Account</span>
-		                </a>
-		                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-		                    <div class="bg-white py-2 collapse-inner rounded">
+        <body id="page-top" onload="displayChart(chartData);">
+        	
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
+
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index_Success.jsp">
+                        <!--교정의 민족 로고 이미지-->
+                        <div class="sidebar-brand">
+                            <img src="https://ifh.cc/g/HRCfNv.png" width="140" height="40" />
+                        </div>
+                    </a>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="dental.jsp">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+
+                    <!-- Nav Item - Charts -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="charts.jsp">
+                            <i class="fas fa-fw fa-chart-area"></i>
+                            <span>Charts</span></a>
+                    </li>
+
+                    <!-- Nav Item - Tables -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="tables.jsp">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Tables</span></a>
+                    </li>
+
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="CreatePatientAccount.jsp">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Create Patient Account</span>
+                        </a>
+                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
 
                                 <a class="collapse-item" href="forgot-password.html">Change Password</a>
                                 <div class="collapse-divider"></div>
@@ -345,7 +409,7 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
+
             <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
             <!-- Core plugin JavaScript-->
@@ -360,7 +424,7 @@
             <!-- Page level custom scripts -->
             <script src="js/demo/chart-area-demo.js"></script>
             <script src="js/demo/chart-pie-demo.js"></script>
-            <script src="js/demo/chart-bar-demo.js"></script>
+            
 
         </body>
 
