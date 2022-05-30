@@ -52,9 +52,9 @@
   	                <div class="social-links d-none d-md-flex align-items-center">
 
 		  	  	        <a href="dental.jsp" class="instagram">덴탈케어</a>  	            
-  	            		<%=id %>님
+  	            		<a class="instagram"><%=id %>님 </a>  
 		  	        	<form action="../Back-End/sessionLoginPro.jsp" method="post" class="form-inline" role="form">
-		  	            	<button name="logout" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
+		  	            	<button name="logout" class="btn" style="color:#ced4da;" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
 		  	            </form>
   	                </div>
   	            </div>
@@ -74,11 +74,10 @@
   	                            <ul>
   	                                <li><a href="#comu">공지사항</a></li>
   	                                <li><a href="#faq">F.A.Q</a></li>
-  	                                <li><a href="#">채팅</a></li>
   	                            </ul>
   	                        </li>
   	                        <!--로그인했으면 바로 dental.html 로그인 안했으면 login.html로-->
-  	                        <li><a class="nav-link scrollto" href="#">덴탈케어</a></li>
+  	                        <li><a class="nav-link scrollto" href="dental.jsp">덴탈케어</a></li>
   	                    </ul>
   	                    <i class="bi bi-list mobile-nav-toggle"></i>
   	                </nav>
