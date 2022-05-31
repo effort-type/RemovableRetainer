@@ -2,9 +2,13 @@
     pageEncoding="UTF-8"%>
 <%
   	String id = (String)session.getAttribute("id");
-
   	if(id != null)
-   	{%>
+  	{
+  		char who = id.charAt(0);
+  		if(who=='d'||who=='p')
+   	{
+  		
+   	%>
   	   <!DOCTYPE html>
   	    <html lang="ko">
 
@@ -50,12 +54,21 @@
   	                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>051-890-1724</span></i>
   	                </div>
   	                <div class="social-links d-none d-md-flex align-items-center">
-
-		  	  	        <a href="dental.jsp" class="instagram">덴탈케어</a>  	            
+  	                <%
+  	                switch(who){
+  	              	case 'd':%>
+	              		<a href="#" class="instagram">덴탈케어</a><%
+  	              		break;
+  	              	case 'p': %>
+  	              		<a href="dental.jsp" class="instagram">덴탈케어</a><%
+  	              		break;
+  	                }
+  	                %>
+		  	  	          	            
   	            		<a class="instagram"><%=id %>님 </a>  
 		  	        	<form action="../Back-End/sessionLoginPro.jsp" method="post" class="form-inline" role="form">
-		  	            	<button name="logout" class="btn" style="color:#ced4da;" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
-		  	            </form>
+		  	        		<button name="logout" class="btn" style="color:#ced4da;" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">로그아웃</button>
+		  	             </form>
   	                </div>
   	            </div>
   	        </section>
@@ -76,8 +89,17 @@
   	                                <li><a href="#faq">F.A.Q</a></li>
   	                            </ul>
   	                        </li>
-  	                        <!--로그인했으면 바로 dental.html 로그인 안했으면 login.html로-->
-  	                        <li><a class="nav-link scrollto" href="dental.jsp">덴탈케어</a></li>
+  	                        <%
+  	                switch(who){
+  	              	case 'd':%>
+	              		<li><a class="nav-link scrollto" href="#">덴탈케어</a></li><%
+  	              		break;
+  	              	case 'p': %>
+  	              		<li><a class="nav-link scrollto" href="dental.jsp">덴탈케어</a></li><%
+  	              		break;
+  	                }
+  	                %>
+  	                        
   	                    </ul>
   	                    <i class="bi bi-list mobile-nav-toggle"></i>
   	                </nav>
@@ -697,5 +719,12 @@
 	                       </script>
                 <%
       	}
+  	}else {
+		%>
+        <script>                            
+            location = "../Front-End/index.html"
+        </script>
+<%
+}
 %>
  
