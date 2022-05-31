@@ -18,11 +18,7 @@
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
 			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
-			
-			//String id = request.getParameter("id");
-			
-			
-			
+						
 			while(rs.next()) { 
 				if(times.size() >= 7) {
 					times.set(0, times.get(0) + rs.getInt("mon"));
@@ -44,16 +40,6 @@
 		}catch(Exception e){
 			
 		}
-		
-		
-// 		finally {
-// 			if(rs != null)
-// 				rs.close();
-// 			if(stmt != null)
-// 				stmt.close();
-// 			if(conn != null)
-// 				conn.close();
-// 		}
 		
 		%>
         <!DOCTYPE html>
