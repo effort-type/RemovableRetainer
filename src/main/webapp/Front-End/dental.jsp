@@ -6,8 +6,8 @@
     request.setCharacterEncoding("UTF-8");
     
     session.setMaxInactiveInterval(3000);
-	String id = (String)session.getAttribute("id");
-	String pw = (String)session.getAttribute("pw");
+	String id = (String)session.getAttribute("user_id");
+	String pw = (String)session.getAttribute("user_pw");
 	
 	if(id != null) {
 		
@@ -19,7 +19,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM time");
 			
 			while(rs.next()) {
 				
@@ -40,7 +40,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM achieveTest");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM achieve");
 			
 			while(rs.next()) {
 				
@@ -69,9 +69,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
-			
-			
+			ResultSet rs = stmt.executeQuery("SELECT * FROM time");
 			
 			int i = 0; // ArrayList배열 인덱스
 			while(rs.next()) {
@@ -85,7 +83,7 @@
 				total_times[i].add(rs.getInt("sun"));
 				
 				// 로그인한 id랑 같을 때 본인의 총 착용 시간을 출력하기 위함
-				if(id.equals(rs.getString("id"))) {
+				if(id.equals(rs.getString("user_id"))) {
 					for(int j = 0; j < total_times[i].size(); j++) {
 						personal_times += total_times[i].get(j);
 					}
@@ -94,15 +92,19 @@
 				i++;
 			}
 			
-			
-			
 			rs.close();
 			stmt.close();
 			conn.close();
 			
 		}catch(Exception e){
 			
-		}		
+		}
+		
+		%>
+		<script>
+			alert(<%=total_times[0].size()%>);
+		</script>
+		<%
 		
 		// 환자 전체의 값을 다 저장하여 평균을 내기 위함
 		ArrayList<Boolean>[] pie = new ArrayList[pie_size];
@@ -121,7 +123,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM achieveTest");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM achieve");
 			
 			int i = 0; //ArrayList 배열 인덱스
 			while(rs.next()) {
@@ -135,7 +137,7 @@
 				pie[i].add(rs.getBoolean("sun"));
 				
 				
-				if(id.equals(rs.getString("id"))) {
+				if(id.equals(rs.getString("user_id"))) {
 					for(int j = 0; j < pie[i].size(); j++) {
 						if(pie[i].get(j) == true) {
 							personal_pie_true++;

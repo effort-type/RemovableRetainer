@@ -4,7 +4,7 @@
 <%@ page import="java.sql.*"  %>
 
 <%
-	String id = (String)session.getAttribute("id");	
+	String id = (String)session.getAttribute("user_id");	
 	session.setMaxInactiveInterval(3000);
 	if(id != null) {
 		
@@ -17,12 +17,12 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM time");
 			
 			while(rs.next()) {		
 				
 				// 로그인한 id랑 같을 때 본인의 총 착용 시간을 출력하기 위함
-				if(id.equals(rs.getString("id"))) {
+				if(id.equals(rs.getString("user_id"))) {
 					times.add(rs.getInt("mon"));
 					times.add(rs.getInt("tue"));
 					times.add(rs.getInt("wed"));
@@ -54,11 +54,11 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("SELECT * FROM achieveTest");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM achieve");
 			
 			while(rs.next()) {
 				
-				if(id.equals(rs.getString("id"))) {
+				if(id.equals(rs.getString("user_id"))) {
 					pie.add(rs.getBoolean("mon"));
 					pie.add(rs.getBoolean("tue"));
 					pie.add(rs.getBoolean("wed"));
