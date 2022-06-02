@@ -31,7 +31,7 @@
 	boolean pwCheck = false;
 	
 	if(logout != null) {
-		session.setAttribute("id", null);
+		session.setAttribute("user_id", null);
 		session.setMaxInactiveInterval(0);
 		
 		check = true;
@@ -57,8 +57,8 @@
 	                <script>
 	                    alert("인증되었습니다.");
 	                <%
-		            	session.setAttribute("id", id);
-		            	session.setAttribute("pw", pw);
+		            	session.setAttribute("admin_id", id);
+		            	session.setAttribute("admin_pw", pw);
 		
 		            	// 세션 유지 시간 설정 (30분동안 설정)
 		            	session.setMaxInactiveInterval(3000);
@@ -86,8 +86,8 @@
 	                <script>
 	                    alert("인증되었습니다.");
 	                <%
-		            	session.setAttribute("id", id);
-		            	session.setAttribute("pw", pw);
+		            	session.setAttribute("hospital_id", id);
+		            	session.setAttribute("hospital_pw", pw);
 		
 		            	// 세션 유지 시간 설정 (30분동안 설정)
 		            	session.setMaxInactiveInterval(3000);
@@ -115,8 +115,8 @@
 	                <script>
 	                    alert("인증되었습니다.");
 	                <%
-		            	session.setAttribute("id", id);
-		            	session.setAttribute("pw", pw);
+		            	session.setAttribute("doctor_id", id);
+		            	session.setAttribute("doctor_pw", pw);
 		
 		            	// 세션 유지 시간 설정 (30분동안 설정)
 		            	session.setMaxInactiveInterval(30);
@@ -145,8 +145,8 @@
 	                <script>
 	                    alert("인증되었습니다.");
 	                <%
-		            	session.setAttribute("id", id);
-		            	session.setAttribute("pw", pw);
+		            	session.setAttribute("user_id", id);
+		            	session.setAttribute("user_pw", pw);
 		
 		            	// 세션 유지 시간 설정 (30분동안 설정)
 		            	session.setMaxInactiveInterval(30);
