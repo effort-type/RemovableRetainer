@@ -3,33 +3,66 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["성공", "실패"],
-        datasets: [{
-            data: [55, 30],
-            backgroundColor: ['#4e73df', '#1cc88a'],
-            hoverBackgroundColor: ['#2e59d9', '#17a673'],
-            hoverBorderColor: "rgba(234, 236, 244, 1)",
-        }],
-    },
-    options: {
-        maintainAspectRatio: false,
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            caretPadding: 10,
+function displayPieChart(success, failed) {
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["성공", "실패"],
+            datasets: [{
+                data: [success, failed],
+                backgroundColor: ['#4e73df', '#1cc88a'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
         },
-        legend: {
-            display: false
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
         },
-        cutoutPercentage: 80,
-    },
-});
+    });
+}
+
+//var ctx = document.getElementById("myPieChart");
+//var myPieChart = new Chart(ctx, {
+//    type: 'doughnut',
+//    data: {
+//        labels: ["성공", "실패"],
+//        datasets: [{
+//            data: [55, 30],
+//            backgroundColor: ['#4e73df', '#1cc88a'],
+//            hoverBackgroundColor: ['#2e59d9', '#17a673'],
+//            hoverBorderColor: "rgba(234, 236, 244, 1)",
+//        }],
+//    },
+//    options: {
+//        maintainAspectRatio: false,
+//        tooltips: {
+//            backgroundColor: "rgb(255,255,255)",
+//            bodyFontColor: "#858796",
+//            borderColor: '#dddfeb',
+//            borderWidth: 1,
+//            xPadding: 15,
+//            yPadding: 15,
+//            displayColors: false,
+//            caretPadding: 10,
+//        },
+//        legend: {
+//            display: false
+//        },
+//        cutoutPercentage: 80,
+//    },
+//});
