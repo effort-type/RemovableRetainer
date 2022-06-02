@@ -1,11 +1,112 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*"  %>
+
 <%
 	String id = (String)session.getAttribute("id");	
 	session.setMaxInactiveInterval(3000);
 	if(id != null) {
-	%>
+		
+		// 착용 시간 값 저장 (본인)
+		ArrayList<Integer> times = new ArrayList<>();
+		
+		// ArrayList 배열에 값 저장하기 위함
+		try{			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+			Statement stmt = conn.createStatement();	
+			ResultSet rs = stmt.executeQuery("SELECT * FROM timeTest");
+			
+			while(rs.next()) {		
+				
+				// 로그인한 id랑 같을 때 본인의 총 착용 시간을 출력하기 위함
+				if(id.equals(rs.getString("id"))) {
+					times.add(rs.getInt("mon"));
+					times.add(rs.getInt("tue"));
+					times.add(rs.getInt("wed"));
+					times.add(rs.getInt("thu"));
+					times.add(rs.getInt("fri"));
+					times.add(rs.getInt("sat"));
+					times.add(rs.getInt("sun"));
+				}
+					
+			}			
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			
+		}		
+		
+		// 목표 달성 여부 값 저장 (본인)
+		ArrayList<Boolean> pie = new ArrayList<>();
+
+		int personal_pie_true = 0; // 달성 개수 체크 (본인)				
+		int personal_pie_false = 0;
+		
+		// pie 차트용
+		try{			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+			Statement stmt = conn.createStatement();	
+			ResultSet rs = stmt.executeQuery("SELECT * FROM achieveTest");
+			
+			while(rs.next()) {
+				
+				if(id.equals(rs.getString("id"))) {
+					pie.add(rs.getBoolean("mon"));
+					pie.add(rs.getBoolean("tue"));
+					pie.add(rs.getBoolean("wed"));
+					pie.add(rs.getBoolean("thu"));
+					pie.add(rs.getBoolean("fri"));
+					pie.add(rs.getBoolean("sat"));
+					pie.add(rs.getBoolean("sun"));	
+					
+					for(int i = 0; i < pie.size(); i++) {
+						if(pie.get(i) == true)
+							personal_pie_true++;
+					}
+				}
+			
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			
+		}
+		double personal_pie_temp = personal_pie_true; // 반올림하기 위한 임시 변수
+		personal_pie_true = (int)Math.round((personal_pie_temp * 100) / 7);
+		personal_pie_false = 100 - personal_pie_true;
+		
+		
+		%>
+		<script>
+			alert(<%=personal_pie_true%>);
+			alert(<%=personal_pie_false%>);
+		</script>
+		<%
+		
+		
+		%>
+		
+		<script>
+			let barchartData = [];
+			var true_pie = <%= personal_pie_true%>;
+			var false_pie = <%= personal_pie_false%>;
+			
+			<%
+			for(int i : times) {%>				
+				barchartData.push(<%= i %>);					
+			<%}%>
+		</script>
+		
 		<!DOCTYPE html>
 		<html lang="ko">
 		
@@ -28,10 +129,13 @@
 		
 		    <!-- Custom styles for this template-->
 		    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+		    
+ 			<script type="text/javascript" src="js/demo/chart-bar-demo.js"></script>
+			<script type="text/javascript" src="js/demo/chart-pie-demo.js"></script>
 		
 		</head>
 		
-		<body id="page-top" onload="chartApi.displayChart()">
+		<body id="page-top" onload="displayChart(barchartData); displayPieChart(true_pie, false_pie);">
 		
 		    <!-- Page Wrapper -->
 		    <div id="wrapper">
@@ -270,11 +374,6 @@
 		
 		    <!-- Page level plugins -->
 		    <script src="vendor/chart.js/Chart.min.js"></script>
-		
-		    <!-- Page level custom scripts -->
-		    <script src="js/demo/chart-area-demo.js"></script>
-		    <script src="js/demo/chart-pie-demo.js"></script>
-		    <script src="js/demo/chart-bar-demo.js"></script>
 		
 		</body>
 		
