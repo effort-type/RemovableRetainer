@@ -121,7 +121,7 @@
 		            	// 세션 유지 시간 설정 (30분동안 설정)
 		            	session.setMaxInactiveInterval(30);
 		            	//의사덴탈케어로가는 인덱스페이지
-		            	response.sendRedirect("../Front-End/index_Success.jsp");
+		            	response.sendRedirect("../Front-End/patientInfoTab.jsp");
 	                %>
 	                </script>
 	                <%
