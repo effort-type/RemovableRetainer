@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%
   	String id = (String)session.getAttribute("user_id");
+
   	if(id != null)
   	{
   		char who = id.charAt(0);
-  		if(who=='d'||who=='p')
+  		if(who=='p')
    	{
   		
    	%>
@@ -715,14 +716,14 @@
     } else {
         		%>
 	                       <script>                            
-	                           location = "../Front-End/index.html"
+	                           location = "../Front-End/index.jsp"
 	                       </script>
                 <%
       	}
   	}else {
 		%>
         <script>                            
-            location = "../Front-End/index.html"
+            location = "../Front-End/index.jsp"
         </script>
 <%
 }
