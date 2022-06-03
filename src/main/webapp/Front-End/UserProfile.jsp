@@ -4,7 +4,7 @@
 <%@ page import="java.sql.*"  %>
 
 <%
-	String id = (String)session.getAttribute("id");	
+	String id = (String)session.getAttribute("user_id");	
 	session.setMaxInactiveInterval(3000);
 	if(id != null) {
 	%>
