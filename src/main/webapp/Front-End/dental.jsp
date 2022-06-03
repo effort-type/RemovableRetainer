@@ -205,9 +205,10 @@
 			}
 		}
 		
-		double pie_result_true = ((double)total_pie_true / 7) / pie_size;
+		double pie_result_true = ((double)total_pie_true / 7) / pie_size; // 반올림하기 위함
 		total_pie_true = (int)Math.round(pie_result_true * 100);
-		total_pie_false = (int)Math.round(((total_pie_false * 100) / 7) / pie_size);
+		double pie_result_false = ((double)total_pie_false / 7) / pie_size; // 반올림하기 위함
+		total_pie_false = (int)Math.round(pie_result_false * 100);
 		
 		ArrayList<Integer> result = new ArrayList<>();
 		for(int i = 0; i < bar_size; i++) {
