@@ -85,15 +85,6 @@
 		personal_pie_true = (int)Math.round((personal_pie_temp * 100) / 7);
 		personal_pie_false = 100 - personal_pie_true;
 		
-		
-		%>
-		<script>
-			alert(<%=personal_pie_true%>);
-			alert(<%=personal_pie_false%>);
-		</script>
-		<%
-		
-		
 		%>
 		
 		<script>

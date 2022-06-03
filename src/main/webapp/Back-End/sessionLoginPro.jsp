@@ -38,7 +38,7 @@
 		%>
 			<script>
 				alert("로그아웃 되었습니다.");
-				location = "../Front-End/index.html";
+				location = "../Front-End/index.jsp";
 			</script>
 		<%
 	}

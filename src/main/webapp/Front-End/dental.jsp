@@ -502,7 +502,7 @@
                                     <!-- Bar Chart -->
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">일별 착용 정보</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">서비스 이용 환자 평균 일별 착용 정보</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="chart-bar">
@@ -519,7 +519,7 @@
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">착용 목표 시간 달성 여부</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">서비스 이용 환자 평균 착용 목표 시간 달성 여부</h6>
                                         </div>
                                         <!-- Card Body -->
                                         <div class="card-body">
