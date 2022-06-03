@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ page import="java.sql.*" %><%
-String id = (String)session.getAttribute("hospital_id");
+	
+	String id = (String)session.getAttribute("hospital_id");
+
   	if(id != null)
   	{
   		char who = id.charAt(0);
@@ -290,7 +292,7 @@ String id = (String)session.getAttribute("hospital_id");
 							to end your current session.</div>
 						<div class="modal-footer">
 							<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-							<a class="btn btn-primary" href="login.html">Logout</a>
+							<a class="btn btn-primary" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">Logout</a>
 						</div>
 					</div>
 				</div>

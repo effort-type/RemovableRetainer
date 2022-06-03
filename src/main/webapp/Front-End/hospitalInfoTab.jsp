@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%><%
+request.setCharacterEncoding("UTF-8");
+
 String id = (String)session.getAttribute("admin_id");
+String pw = (String)session.getAttribute("admin_pw");
+
+
   	if(id != null)
   	{
   		char who = id.charAt(0);
@@ -59,26 +64,16 @@ String id = (String)session.getAttribute("admin_id");
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="dental.jsp">
+			<li class="nav-item active"><a class="nav-link" href="hospitalInfoTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.jsp">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-			</a></li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item active"><a class="nav-link"
-				href="tables.jsp"> <i class="fas fa-fw fa-table"></i> <span>Tables</span></a>
-			</li>
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="fas fa-fw fa-cog"></i> <span>Change Password</span>
+					class="fas fa-fw fa-cog"></i> <span>치과 등록하는 페이지</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -146,8 +141,7 @@ String id = (String)session.getAttribute("admin_id");
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">사용자
-									이름 넣기</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small"><%=id %> 님</span> <img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -287,7 +281,7 @@ String id = (String)session.getAttribute("admin_id");
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
+					<a class="btn btn-primary" onclick="location.href='../Back-End/sessionLoginPro.jsp?logout=1'">Logout</a>
 				</div>
 			</div>
 		</div>
