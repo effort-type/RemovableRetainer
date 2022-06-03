@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+
+<%
+String id = (String)session.getAttribute("doctor_id");
+
+	if(id != null)
+	{
+		char who = id.charAt(0);
+		if(who=='d')
+		{%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -60,20 +69,16 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Nav Item - Charts -->
-			<li class="nav-item"><a class="nav-link" href="charts.jsp">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-			</a></li>
+			<!-- Nav Item - Dashboard -->
+				<li class="nav-item active"><a class="nav-link" href="patientInfoTab.jsp">
+						<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+				</a></li>
+	
+				<!-- Nav Item - Pages Collapse Menu -->
+				<li class="nav-item"><a class="nav-link" href="#"> <i
+						class="fas fa-fw fa-cog"></i> <span>환자 등록 페이지로 이동</span>
+				</a>
 
-			<!-- Nav Item - Tables -->
-			<li class="nav-item active"><a class="nav-link"
-				href="tables.jsp"> <i class="fas fa-fw fa-table"></i> <span>Tables</span></a>
-			</li>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="fas fa-fw fa-cog"></i> <span>Change Password</span>
-			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -140,8 +145,7 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">사용자
-									이름 넣기</span> <img class="img-profile rounded-circle"
+								class="mr-2 d-none d-lg-inline text-gray-600 small"><%=id %> 님</span> <img class="img-profile rounded-circle"
 								src="img/undraw_profile.svg">
 						</a> <!-- Dropdown - User Information -->
 							<div
@@ -352,3 +356,21 @@
 </body>
 
 </html>
+		<%
+		    } else {
+	        	%>
+	    	    <script>
+		             alert("접근권한이 없습니다.");
+		             history.back()
+	       		</script>
+	                <%
+	      	}
+	  	}else {
+			%>
+	        <script>        
+	        	alert("로그인이 필요한 서비스입니다.");
+	            location = "../Front-End/login.html"
+	        </script>
+	<%
+	}
+	%>
