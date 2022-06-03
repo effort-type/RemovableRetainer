@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="java.time.temporal.ChronoUnit" %>
 <%@ page import="java.sql.*"  %>
+<%@ page import="java.text.*" %>
     <%
     request.setCharacterEncoding("UTF-8");
     
@@ -9,10 +11,27 @@
 	String id = (String)session.getAttribute("user_id");
 	String pw = (String)session.getAttribute("user_pw");
 	
+	java.util.Date now_temp = new java.util.Date();
+	java.sql.Date start = new java.sql.Date(now_temp.getTime());
+	java.sql.Date end = new java.sql.Date(now_temp.getTime());
+	
+	
+	java.sql.Date now = new java.sql.Date(now_temp.getTime());
+	
+	
+// 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
+// 	String format = formatter.format(now);
+	
+	long result_time = 0; // 총 착용해야하는 일수
+	long now_time = 0; // 현재 착용한 일수
+	long remain = 0; // 남은 일수
+	
 	if(id != null) {
 		
 		int bar_size = 0;
 		int pie_size = 0;
+		
+		
 		
 		try{			
 			
@@ -24,7 +43,6 @@
 			while(rs.next()) {
 				
 				bar_size = rs.getRow();
-
 			}
 			rs.close();
 			stmt.close();
@@ -33,6 +51,33 @@
 		}catch(Exception e){
 			
 		}
+		try{			
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+			Statement stmt = conn.createStatement();	
+			ResultSet rs = stmt.executeQuery("SELECT * FROM user");
+			
+			while(rs.next()) {
+				
+				if(id.equals(rs.getString("user_id"))) {
+					start = rs.getDate("device_start");
+					end = rs.getDate("device_end");
+					result_time = ChronoUnit.DAYS.between(start.toLocalDate(), end.toLocalDate()) + 1;	
+				}			
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+			
+		}catch(Exception e){
+			
+		}
+		
+		now_time = ChronoUnit.DAYS.between(start.toLocalDate(), now.toLocalDate()) + 1;
+		
+		remain = result_time - now_time;
+		System.out.println(remain);
 		
 		// pie 차트용
 		try{			
@@ -99,12 +144,6 @@
 		}catch(Exception e){
 			
 		}
-		
-		%>
-		<script>
-			alert(<%=total_times[0].size()%>);
-		</script>
-		<%
 		
 		// 환자 전체의 값을 다 저장하여 평균을 내기 위함
 		ArrayList<Boolean>[] pie = new ArrayList[pie_size];
@@ -396,7 +435,7 @@
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                         총 착용 일</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">며칠 착용했는지 데이터 넣기</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><%= now_time %></div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -440,8 +479,8 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                        D-DAY</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">남은 기간 데이터 넣기 ex) 14/510</div>
+                                                        남은 착용 일</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">D-<%= remain %></div>
                                                 </div>
                                                 <div class="col-auto">
                                                     <i class="fas fa-chart-area fa-2x text-gray-300"></i>
