@@ -55,26 +55,16 @@
 					<hr class="sidebar-divider my-0">
 
 					<!-- Nav Item - Dashboard -->
-					<li class="nav-item"><a class="nav-link" href="dental.jsp">
-							<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
-						</a></li>
+					<li class="nav-item active"><a class="nav-link" href="doctorInfoTab.jsp">
+						<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
+					</a></li>
 
 					<!-- Divider -->
 					<hr class="sidebar-divider">
 
-					<!-- Nav Item - Charts -->
-					<li class="nav-item"><a class="nav-link" href="charts.jsp">
-							<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-						</a></li>
-
-					<!-- Nav Item - Tables -->
-					<li class="nav-item active"><a class="nav-link" href="tables.jsp"> <i
-								class="fas fa-fw fa-table"></i> <span>Tables</span></a>
-					</li>
-
 					<!-- Nav Item - Pages Collapse Menu -->
-					<li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-fw fa-cog"></i> <span>Change
-								Password</span>
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+						class="fas fa-fw fa-cog"></i> <span>의사 등록 페이지 넣기</span>
 						</a>
 						<div id="collapsePages" class="collapse" aria-labelledby="headingPages"
 							data-parent="#accordionSidebar">
