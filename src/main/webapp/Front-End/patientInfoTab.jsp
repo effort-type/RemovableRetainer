@@ -66,10 +66,13 @@ String id = (String)session.getAttribute("doctor_id");
 					<li class="nav-item active"><a class="nav-link" href="patientInfoTab.jsp">
 							<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 					</a></li>
-		
+
+					<!-- Divider -->
+					<hr class="sidebar-divider my-0">
+							
 					<!-- Nav Item - Pages Collapse Menu -->
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="fas fa-fw fa-cog"></i> <span>환자 등록 페이지로 이동</span>
+					<li class="nav-item"><a class="nav-link" href="createPatientInfo.jsp"> <i
+							class="fas fa-fw fa-cog"></i> <span>Patient Sign Up</span>
 					</a>
 						<div id="collapsePages" class="collapse"
 							aria-labelledby="headingPages" data-parent="#accordionSidebar">

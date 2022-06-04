@@ -62,15 +62,16 @@ String id = (String)session.getAttribute("doctor_id");
 					<hr class="sidebar-divider my-0">
 		
 					<!-- Nav Item - Dashboard -->
-					<li class="nav-item active"><a class="nav-link" href="patientInfoTab.jsp">
+					<li class="nav-item"><a class="nav-link" href="patientInfoTab.jsp">
 							<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 					</a></li>
 		
 					<!-- Divider -->
 					<hr class="sidebar-divider my-0">
 		
+		
 					<!-- Nav Item - Pages Collapse Menu -->
-					<li class="nav-item"><a class="nav-link" href="createPatientInfo.jsp"> <i
+					<li class="nav-item active"><a class="nav-link" href="createPatientInfo.jsp"> <i
 							class="fas fa-fw fa-cog"></i> <span>Patient Sign Up</span>
 					</a>
 						<div id="collapsePages" class="collapse"
@@ -166,21 +167,10 @@ String id = (String)session.getAttribute("doctor_id");
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-<%
-					String user_id = request.getParameter("user_id");
-						try{
-							Class.forName("com.mysql.jdbc.Driver");
-							Connection conn = DriverManager.getConnection
-								("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-							String sql = "SELECT * FROM user WHERE user_id=?";
-							PreparedStatement pstmt = conn.prepareStatement(sql);
-							pstmt.setString(1, user_id);
-							ResultSet rs = pstmt.executeQuery();
-						%>
-						<form mehod="post" action="../Back-End/patientInfoUpdate.jsp?user_id=<%=user_id %>">
+					<form mehod="post" action="../Back-End/patientInfoUpdate.jsp">
 					<!-- Page Heading -->
-					<% while(rs.next()){ %>					
-					<h1 class="h3 mb-2 text-gray-800"><%=rs.getString("user_name") %></h1>
+								
+					<h1 class="h3 mb-2 text-gray-800">회원 등록</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -200,84 +190,60 @@ String id = (String)session.getAttribute("doctor_id");
 									<tr>
 											<th style="background-color: #eeeeee;">이름</th>
 											<td>
-											<input type="text" class="form-control" placeholder="이름" name="user_name"
-											value="<%=rs.getString("user_name") %>" required>
+											<input type="text" class="form-control" placeholder="이름" name="user_name" required>
 											</td>
 											<th style="background-color: #eeeeee;">아이디</th>
 											<th>
-											<input type="text" class="form-control" placeholder="아이디" name="user_id"
-											value="<%=rs.getString("user_id") %>" readonly></th>
+											<input type="text" class="form-control" placeholder="아이디" name="user_id" minlength="4" required></th>
 											<th style="background-color: #eeeeee;">비밀번호</th>
-											<td><input type="password" class="form-control" placeholder="비번" name="user_pw"
-											value="<%=rs.getString("user_pw") %>" readonly>
+											<td><input type="password" class="form-control" placeholder="비번" name="user_pw" minlength="4" maxlength="20" required>
 											</td>
 										</tr>
 										<tr>
 											<th style="background-color: #eeeeee;">주민번호</th>
-											<th><input type="text" class="form-control" placeholder="주민번호" name="user_ssn"
-											value="<%=rs.getString("user_ssn") %>" readonly></th>
+											<th><input type="text" class="form-control" placeholder="주민번호" name="user_ssn" minlength="14" maxlength="14" required></th>
 											<th style="background-color: #eeeeee;">환자 연락처</th>
-											<th><input type="text" class="form-control" placeholder="010-0000-0000" name="user_phone"
-											value="<%=rs.getString("user_phone") %>" required></th>
+											<th><input type="text" class="form-control" placeholder="010-0000-0000" name="user_phone" minlength="11" maxlength="13" required></th>
 											<th style="background-color: #eeeeee;">보호자 연락처</th>
-											<th><input type="text" class="form-control" placeholder="010-0000-0000" name="family_phone"
-											value="<%=rs.getString("family_phone") %>"></th>
+											<th><input type="text" class="form-control" placeholder="010-0000-0000" name="family_phone" minlength="11" maxlength="13" required></th>
 										</tr>
 										<tr>
 											<th style="background-color: #eeeeee;">담당 의사</th>
 											<th><input type="text" class="form-control" placeholder="담당 의사 아이디" name="doctor_id"
-											value="<%=rs.getString("doctor_id") %>" required></th>
+											value="<%=id %>" required></th>
 											<th style="background-color: #eeeeee;">주소</th>
 											<th colspan="3"><textarea class="form-control" placeholder="주소" name="user_address"
-											maxlangth="512"><%=rs.getString("user_address") %></textarea></th>
+											maxlangth="512"></textarea></th>
 											</tr>
 										<tr>
 											<th style="background-color: #eeeeee;">착용 기기</th>
-											<% //db값 바꾼다면 수정해야해요~
-											if(rs.getString("device_type").equals("D")){%>
 											<td><input type="text" class="form-control" placeholder="착용 기기" name="device_type"
-											value="가철식 교정 유지장치" readonly></td>
-											<%} else{%>
-											<td><input type="text" class="form-control" placeholder="착용 기기" name="device_type"
-											value="페이스마스크" readonly></td>
-											<%}%>
+											value="D" required></td>
 											
 											<th style="background-color: #eeeeee;">착용 시작일</th>
-											<td colspan="3"> <input type='date' class="form-control" name='device_start' placeholder="yyyy-mm-dd" 
-											value="<%=rs.getString("device_start") %>" readonly></td>
+											<td colspan="3"> <input type='text' class="form-control" name='device_start' placeholder="2022-04-23"  required></td>
 										</tr>
 										<tr>
 											<th style="background-color: #eeeeee;">목표 시간</th>
 											<!-- 목표시간 변수로 변경해야함  -->
-											<td><input type='number' class="form-control" name='device_type' placeholder="n" 
-											value="<%=rs.getString("device_type") %>"></td>
+											<td><input type='number' class="form-control" name='device_type' placeholder="5" 
+											value="5"></td>
 											<th style="background-color: #eeeeee;">착용 종료일</th>
-											<td colspan="3"><input type='date' class="form-control" name='device_end' placeholder="yyyy-mm-dd" 
-											value="<%=rs.getString("device_end") %>" required></td>
+											<td colspan="3"><input type='text' class="form-control" name='device_end' placeholder="2022-08-11"  required></td>
 										</tr>
 										<tr>
 										<th colspan="6" style="text-align: center;">
 											
-											<input type="submit" class="btn btn-primary pull-right" value="수정" onclick="return confirm('환자 정보를 수정합니다.')">
-												<a href="../Front-End/patientInfoTab.jsp" class="btn btn-primary">확인</a>
+											
+											<a href="../Front-End/patientInfoTab.jsp" class="btn btn-primary">취소</a>
+											<input type="submit" class="btn btn-primary pull-right" value="등록" onclick="return confirm('환자를 등록합니다.')">
 										</th>
 										</tr>
-									<%
-									}	
-									%>										
+																		
 									</tbody>
 								</table>
 								</form>
-								<%
-								rs.close();
-								pstmt.close();
-								conn.close();
-								}catch(ClassNotFoundException e){
-									out.println(e);
-								}catch(SQLException e){
-									out.println("err:"+e.toString());
-								}
-								%>
+								
 							</div>
 					</div>
 
