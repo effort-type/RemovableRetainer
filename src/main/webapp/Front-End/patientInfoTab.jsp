@@ -184,7 +184,7 @@ String id = (String)session.getAttribute("doctor_id");
 													("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 											Statement stmt = conn.createStatement();	
 											ResultSet rs = stmt.executeQuery
-													("SELECT user_id,user_name,device_type,device_start,device_end FROM user"); 
+													("SELECT user_id,user_name,device_type,device_start,device_end, doctor_id FROM user"); 
 										%>
 										<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 											<thead>
@@ -215,11 +215,13 @@ String id = (String)session.getAttribute("doctor_id");
 											<tbody>
 											<%
 											while(rs.next()){
+												if(id.equals(rs.getString("doctor_id")))
+												{
 											%>	<tr>
 													<th><%=rs.getString("user_id") %></th>
 													<td><a href="#"><%=rs.getString("user_name") %></a></td>
 													<% //db값 바꾼다면 수정해야해요~
-													if(rs.getString("device_type").equals("O")){
+													if(rs.getString("device_type").equals("D")){
 														%><td>가철식 교정 유지장치</td><%
 													} else{
 														%><td>페이스마스크</td><%
@@ -231,7 +233,8 @@ String id = (String)session.getAttribute("doctor_id");
 													<td><a href="../Front-End/patientInfoDetail.jsp?user_id=<%=rs.getString("user_id") %>">수정</a></td>
 												</tr>
 											<%
-											}	
+												} // if end
+											} // while end
 											%>
 											</tbody>
 										</table><%
