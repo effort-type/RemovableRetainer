@@ -69,8 +69,8 @@ String id = (String)session.getAttribute("hospital_id");
 			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="fas fa-fw fa-cog"></i> <span>의사 등록 페이지 넣기</span>
+			<li class="nav-item"><a class="nav-link" href="createDoctorInfo.jsp"> <i
+					class="fas fa-fw fa-cog"></i> <span>Hospital Sign Up</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">
