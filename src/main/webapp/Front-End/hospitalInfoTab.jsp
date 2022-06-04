@@ -72,8 +72,8 @@ String pw = (String)session.getAttribute("admin_pw");
 			<hr class="sidebar-divider">
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="fas fa-fw fa-cog"></i> <span>치과 등록하는 페이지</span>
+			<li class="nav-item"><a class="nav-link" href="createHospitalInfo.jsp"> <i
+					class="fas fa-fw fa-cog"></i> <span>Hospital Sign Up</span>
 			</a>
 				<div id="collapsePages" class="collapse"
 					aria-labelledby="headingPages" data-parent="#accordionSidebar">

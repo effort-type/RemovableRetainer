@@ -58,7 +58,7 @@
 					<hr class="sidebar-divider my-0">
 
 					<!-- Nav Item - Dashboard -->
-					<li class="nav-item active"><a class="nav-link" href="hospitalInfoTab.jsp">
+					<li class="nav-item"><a class="nav-link" href="hospitalInfoTab.jsp">
 						<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 					</a></li>
 
@@ -66,7 +66,7 @@
 					<hr class="sidebar-divider">
 
 					<!-- Nav Item - Pages Collapse Menu -->
-					<li class="nav-item"><a class="nav-link" href="createHospitalInfo.jsp"> <i
+					<li class="nav-item active"><a class="nav-link" href="createHospitalInfo.jsp"> <i
 						class="fas fa-fw fa-cog"></i> <span>Hospital Sign Up</span>
 					</a>
 						<div id="collapsePages" class="collapse" aria-labelledby="headingPages"
@@ -155,22 +155,12 @@
 
 						<!-- Begin Page Content -->
 						<div class="container-fluid">
-							<% 
-							String hospital_id=request.getParameter("hospital_id"); 
-								try{
-								Class.forName("com.mysql.jdbc.Driver"); 
-								Connection conn=DriverManager.getConnection
-								("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root" , "1234" ); 
-								String sql="SELECT * FROM hospital WHERE hospital_id=?" ; 
-								PreparedStatement pstmt=conn.prepareStatement(sql); 
-								pstmt.setString(1, hospital_id); 
-								ResultSet rs=pstmt.executeQuery(); %>
-								<form mehod="post"
-									action="../Back-End/hospitalInfoUpdate.jsp?hospital_id=<%=hospital_id %>">
+							
+								<form mehod="post"	action="../Back-End/hospitalInfoCreate.jsp">
 									<!-- Page Heading -->
-									<% while(rs.next()){ %>
+									
 										<h1 class="h3 mb-2 text-gray-800">
-											<%=rs.getString("hospital_name") %>
+											치과 등록
 										</h1>
 
 										<!-- DataTales Example -->
@@ -185,68 +175,59 @@
 																병원 정보</th>
 														</tr>
 													</thead>
-													<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
-
+													
 													<tbody>
 														<tr>
 															<th style="background-color: #eeeeee;">병원명</th>
 															<td>
-																<input type="text" class="form-control" placeholder="병원명" name="hospital_name" 
-																	value="<%=rs.getString("hospital_name") %>" required>
+																<input type="text" class="form-control" placeholder="병원명" name="hospital_name" maxlength="20" required>
 															</td>
 															<th style="background-color: #eeeeee;">아이디</th>
 															<th>
 																<input type="text" class="form-control"
-																	placeholder="아이디" name="hospital_id"
-																	value="<%=rs.getString("hospital_id") %>" readonly>
+																	placeholder="아이디" name="hospital_id" minlength="4" required>
 															</th>
 															<th style="background-color: #eeeeee;">비밀번호</th>
 															<td><input type="password" class="form-control"
-																	placeholder="비번" name="hospital_pw"
-																	value="<%=rs.getString("hospital_pw") %>" readonly>
+																	placeholder="비번" name="hospital_pw" minlength="4" required>
 															</td>
 														</tr>
 														<tr>
 															<th style="background-color: #eeeeee;">병원장 이름</th>
 															<th><input type="text" class="form-control"
-																	placeholder="병원장 이름" name="head_name"
-																	value="<%=rs.getString("head_name") %>" required>
+																	placeholder="병원장 이름" name="head_name"  maxlength="5" required>
 															</th>
 															<th style="background-color: #eeeeee;">주소</th>
 															<th colspan="3"><textarea class="form-control"
 																	placeholder="주소" name="hospital_address"
-																	maxlangth="512" required><%=rs.getString("hospital_address") %></textarea>
+																	maxlangth="512" required></textarea>
 															</th>
 														</tr>
 														<tr>
 															<th style="background-color: #eeeeee;">병원 전화 번호</th>
 																<th><input type="text" class="form-control"
-																	placeholder="병원 전화 번호" name="hospital_phone"
-																	value="<%=rs.getString("hospital_phone") %>" required>
+																	placeholder="병원 전화 번호" name="hospital_phone" maxlength="13" required>
 															</th>
 															<th style="background-color: #eeeeee;">사업자 번호</th>
 															<td colspan="3">
 																<input type="text" class="form-control"
-																	placeholder="사업자 번호" name="business_num"
-																	value="<%=rs.getString("business_num") %>" required>
+																	placeholder="사업자 번호" name="business_num" minlength="12" required>
 
 															</td>
 														</tr>
 														<tr>
 															<th colspan="6" style="text-align: center;">
-																<input type="submit" class="btn btn-primary pull-right"
-																	value="수정"
-																	onclick="return confirm('병원 정보를 수정합니다.')">
 																<a href="../Front-End/hospitalInfoTab.jsp"
-																	class="btn btn-primary">확인</a>
+																	class="btn btn-primary">취소</a>
+																<input type="submit" class="btn btn-primary pull-right"
+																	value="등록"
+																	onclick="return confirm('병원 정보를 등록합니다.')">
+																
 															</th>
 														</tr>
-														<% } %>
 													</tbody>
 												</table>
 								</form>
-								<% rs.close(); pstmt.close(); conn.close(); }catch(ClassNotFoundException e){
-									out.println(e); }catch(SQLException e){ out.println("err:"+e.toString()); } %>
 						</div>
 					</div>
 
