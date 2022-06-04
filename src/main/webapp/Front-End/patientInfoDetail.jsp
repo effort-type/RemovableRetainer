@@ -243,7 +243,7 @@ String id = (String)session.getAttribute("doctor_id");
 											<%}%>
 											
 											<th style="background-color: #eeeeee;">착용 시작일</th>
-											<td colspan="3"> <input type='date' class="form-control" name='device_start' placeholder="yyyy-mm-dd" 
+											<td colspan="3"> <input type='text' class="form-control" name='device_start' placeholder="yyyy-mm-dd" 
 											value="<%=rs.getString("device_start") %>" readonly></td>
 										</tr>
 										<tr>
@@ -252,14 +252,14 @@ String id = (String)session.getAttribute("doctor_id");
 											<td><input type='number' class="form-control" name='device_type' placeholder="n" 
 											value="<%=rs.getString("device_type") %>"></td>
 											<th style="background-color: #eeeeee;">착용 종료일</th>
-											<td colspan="3"><input type='date' class="form-control" name='device_end' placeholder="yyyy-mm-dd" 
+											<td colspan="3"><input type='text' class="form-control" name='device_end' placeholder="yyyy-mm-dd" 
 											value="<%=rs.getString("device_end") %>" required></td>
 										</tr>
 										<tr>
 										<th colspan="6" style="text-align: center;">
-											
+											<a href="../Front-End/patientInfoTab.jsp" class="btn btn-primary">취소</a>
 											<input type="submit" class="btn btn-primary pull-right" value="수정" onclick="return confirm('환자 정보를 수정합니다.')">
-												<a href="../Front-End/patientInfoTab.jsp" class="btn btn-primary">확인</a>
+												
 										</th>
 										</tr>
 									<%

@@ -167,7 +167,7 @@ String id = (String)session.getAttribute("doctor_id");
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
-					<form mehod="post" action="../Back-End/patientInfoUpdate.jsp">
+					<form mehod="post" action="../Back-End/patientInfoCreate.jsp">
 					<!-- Page Heading -->
 								
 					<h1 class="h3 mb-2 text-gray-800">회원 등록</h1>
