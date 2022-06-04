@@ -219,7 +219,10 @@ String id = (String)session.getAttribute("doctor_id");
 												{
 											%>	<tr>
 													<th><%=rs.getString("user_id") %></th>
-													<td><a href="#"><%=rs.getString("user_name") %></a></td>
+													<td><a href="../Front-End/patientChartInfo.jsp?patient=<%=rs.getString("user_id") %>&patient_name=<%=rs.getString("user_name")%>">
+													<%=rs.getString("user_name") %>
+									
+													</a></td>
 													<% //db값 바꾼다면 수정해야해요~
 													if(rs.getString("device_type").equals("D")){
 														%><td>가철식 교정 유지장치</td><%
