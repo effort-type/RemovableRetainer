@@ -222,10 +222,11 @@
 														</tr>
 														<tr>
 															<th colspan="6" style="text-align: center;">
+																<a href="../Front-End/doctorInfoTab.jsp"
+																	class="btn btn-primary">취소</a>
 																<input type="submit" class="btn btn-primary pull-right"
 																	value="수정"	onclick="return confirm('의사 정보를 수정합니다.')">
-																<a href="../Front-End/doctorInfoTab.jsp"
-																	class="btn btn-primary">확인</a>
+																
 															</th>
 														</tr>
 														<% } %>
