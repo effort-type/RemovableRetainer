@@ -182,7 +182,7 @@ String id = (String)session.getAttribute("hospital_id");
 											("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 									Statement stmt = conn.createStatement();	
 									ResultSet rs = stmt.executeQuery
-											("SELECT doctor_id,doctor_name,hospital_name FROM doctor,hospital WHERE doctor.hospital_id=hospital.hospital_id"); 
+											("SELECT doctor_id,doctor_name,hospital_name, doctor.hospital_id FROM doctor,hospital WHERE doctor.hospital_id=hospital.hospital_id"); 
 								%>
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
@@ -209,6 +209,8 @@ String id = (String)session.getAttribute("hospital_id");
 									<tbody>
 									<%
 									while(rs.next()){
+										if(id.equals(rs.getString("hospital_id")))
+										{
 									%>	<tr>
 											<th><%=rs.getString("doctor_id") %></th>
 											<td><a href="../Front-End/doctorInfoDetail.jsp?doctor_id=<%=rs.getString("doctor_id") %>"><%=rs.getString("doctor_name") %></a></td>
@@ -217,6 +219,7 @@ String id = (String)session.getAttribute("hospital_id");
 											<td><a href="../Front-End/doctorInfoDetail.jsp?doctor_id=<%=rs.getString("doctor_id") %>">수정</a></td>
 										</tr>
 									<%
+										}
 									}	
 									%>
 									</tbody>
