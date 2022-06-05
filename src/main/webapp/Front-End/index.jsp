@@ -235,13 +235,7 @@
     <div class="container d-flex align-items-center justify-content-between">
 
 
-      <!--<a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>
-     https://ifh.cc/v-lbBVnh -->
       <a href="index.jsp" class="logo"><img src='https://ifh.cc/g/lbBVnh.png' border='0'></a>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
-      <!--<h1 class="logo"><a href="index.html">교<span>정의민</span>족</a></h1>-->
-
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
@@ -254,25 +248,7 @@
               <li><a href="#faq">F.A.Q</a></li>
             </ul>
           </li>
-          <!--
-          <li><a class="nav-link scrollto" href="#comu">커뮤니티</a></li>
-          <li class="dropdown"><a href="#"><span>메뉴</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">풉</a></li>
-              <li class="dropdown"><a href="#"><span>푸후후</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">ㅋ</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>-->
+          
           <!--로그인했으면 바로 dental.html 로그인 안했으면 login.html로-->
           <li><a class="nav-link scrollto" onclick="return confirm('로그인이 필요합니다.')" href="login.html">덴탈케어</a></li>
           <li><a class="nav-link scrollto" href="login.html">로그인</a></li>
@@ -377,6 +353,7 @@
 
 
         <!-- Page Heading  <h1>여기에 라디오 박스?</h1> -->
+        <form action="chartCheck.jsp" method="post">
         <div class="row align-items-center" data-aos="fade-up" data-aos-delay="50">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
@@ -385,23 +362,23 @@
               <label class="btn btn-outline-primary" for="btn-check-outlined1">나이대</label>
               <div class="form-check">
                 <br>
-                <input class="form-check-input" type="radio" name="age" id="age1" value="age10">
+                <input class="form-check-input" type="radio" name="age" id="age1" value="10">
                 <label class="form-check-label" for="age1">
                   10대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age2" value="age20">
+                <input class="form-check-input" type="radio" name="age" id="age2" value="20">
                 <label class="form-check-label" for="age2">
                   20대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age3" value="age30">
+                <input class="form-check-input" type="radio" name="age" id="age3" value="30">
                 <label class="form-check-label" for="age3">
                   30대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age4" value="age40">
+                <input class="form-check-input" type="radio" name="age" id="age4" value="40">
                 <label class="form-check-label" for="age4">
                   40대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age5" value="age50">
+                <input class="form-check-input" type="radio" name="age" id="age5" value="50">
                 <label class="form-check-label" for="age5">
                   50대 이상
                 </label>
@@ -414,11 +391,11 @@
               <label class="btn btn-outline-primary" for="btn-check-outlined2">성별</label>
               <div></div>
               <div class="form-check"><br>
-                <input class="form-check-input" type="radio" name="gender" id="gender1" value="genderM">
+                <input class="form-check-input" type="radio" name="gender" id="gender1" value="13">
                 <label class="form-check-label" for="gender1">
                   남
                 </label><br>
-                <input class="form-check-input" type="radio" name="gender" id="gender2" value="genderW">
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24">
                 <label class="form-check-label" for="gender2">
                   여
                 </label>
@@ -430,25 +407,25 @@
               <input type="checkbox" class="btn-check" id="btn-check-outlined3" autocomplete="off">
               <label class="btn btn-outline-primary" for="btn-check-outlined3">시간대</label>
               <div class="form-check"><br>
-                <input class="form-check-input" type="radio" name="time" id="time1" value="time06">
+                <input class="form-check-input" type="radio" name="time" id="time1" value="0004">
                 <label class="form-check-label" for="time1">
-                  00:00 ~ 06:00
+                  0 ~ 4시간
                 </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time2" value="time710">
+                <input class="form-check-input" type="radio" name="time" id="time2" value="0509">
                 <label class="form-check-label" for="time2">
-                  07:00 ~ 10:00
+                  5 ~ 9시간
                 </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time3" value="time1114">
+                <input class="form-check-input" type="radio" name="time" id="time3" value="1014">
                 <label class="form-check-label" for="time3">
-                  11:00 ~ 14:00
+                  10 ~ 14시간
                 </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time4" value="time1518">
+                <input class="form-check-input" type="radio" name="time" id="time4" value="1519">
                 <label class="form-check-label" for="time4">
-                  15:00 ~ 18:00
+                  15 ~ 19시간
                 </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time5" value="time1923">
+                <input class="form-check-input" type="radio" name="time" id="time5" value="2024">
                 <label class="form-check-label" for="time5">
-                  19:00 ~ 23:00
+                  20 ~ 24시간
                 </label>
               </div>
 
@@ -459,11 +436,11 @@
               <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off" checked disabled>
               <label class="btn btn-outline-primary" for="btn-check-outlined4">종류</label>
               <div class="form-check"><br>
-                <input class="form-check-input" type="radio" name="device" id="device1" value="device1" checked>
+                <input class="form-check-input" type="radio" name="device" id="device1" value="D" checked>
                 <label class="form-check-label" for="device1">
                   가철식교정유지장치
                 </label><br>
-                <input class="form-check-input" type="radio" name="device" id="device2" value="device2">
+                <input class="form-check-input" type="radio" name="device" id="device2" value="F">
                 <label class="form-check-label" for="device2">
                   페이스마스크
                 </label>
@@ -471,9 +448,10 @@
             </div>
           </div>
           <div class="d-sm-flex align-items-center justify-content-center mb-4">
-            <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+            <input type="submit" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
             <label class="btn btn-outline-secondary" for="btn-check-2-outlined">조회</label><br>
           </div>
+          </form>
           <!-- Content Row -->
           <div class="row">
 
