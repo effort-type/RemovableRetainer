@@ -9,6 +9,7 @@
 </head>
 <body>
 <%
+	request.setCharacterEncoding("UTF-8");
 	String hospital_id = request.getParameter("hospital_id");
 	try{
 		Class.forName("com.mysql.jdbc.Driver");

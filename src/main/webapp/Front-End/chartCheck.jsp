@@ -321,7 +321,7 @@
                 <label class="form-check-label" for="age1">
                   10대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age2" value="20">
+                <input class="form-check-input" type="radio" name="age" id="age2" value="20" checked>
                 <label class="form-check-label" for="age2">
                   20대
                 </label><br>
@@ -350,7 +350,7 @@
                 <label class="form-check-label" for="gender1">
                   남
                 </label><br>
-                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24">
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24" checked>
                 <label class="form-check-label" for="gender2">
                   여
                 </label>

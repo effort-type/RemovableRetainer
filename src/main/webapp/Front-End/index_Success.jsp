@@ -1,15 +1,176 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*"  %>
 <%
   	String id = (String)session.getAttribute("user_id");
+	request.setCharacterEncoding("UTF-8");
 
   	if(id != null)
   	{
   		char who = id.charAt(0);
   		if(who=='p')
    	{
+  		// 평균 값 계산하기 위함
+  			int bar_size = 0;
+  			int pie_size = 0;
   		
-   	%>
+  			try{			
+  				
+  				Class.forName("com.mysql.jdbc.Driver");
+  				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+  				Statement stmt = conn.createStatement();	
+  				ResultSet rs = stmt.executeQuery("SELECT * FROM time");
+  				
+  				while(rs.next()) {
+  					
+  					bar_size = rs.getRow();
+  				}
+  				rs.close();
+  				stmt.close();
+  				conn.close();
+  				
+  			}catch(Exception e){
+  				
+  			}
+  			
+  			// pie 차트용
+  			try{			
+  				
+  				Class.forName("com.mysql.jdbc.Driver");
+  				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+  				Statement stmt = conn.createStatement();	
+  				ResultSet rs = stmt.executeQuery("SELECT * FROM achieve");
+  				
+  				while(rs.next()) {
+  					
+  					// 환자 전체 통계 평균을 내기 위해서는 ArrayList 배열이 필요하기 때문에 사이즈 체크
+  					pie_size = rs.getRow();
+
+  				}
+  				rs.close();
+  				stmt.close();
+  				conn.close();
+  				
+  			}catch(Exception e){
+  				
+  			}
+  			
+  			// 환자 전체의 값을 다 저장하여 평균을 내기 위함
+  			ArrayList<Integer>[] total_times = new ArrayList[bar_size];
+  			for(int i = 0; i < total_times.length; i++) {
+  				total_times[i] = new ArrayList<>();
+  			}
+  			
+  			// ArrayList 배열에 값 저장하기 위함
+  			try{			
+  				
+  				Class.forName("com.mysql.jdbc.Driver");
+  				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+  				Statement stmt = conn.createStatement();	
+  				ResultSet rs = stmt.executeQuery("SELECT * FROM time");
+  				
+  				int i = 0; // ArrayList배열 인덱스
+  				while(rs.next()) {
+  					
+  					total_times[i].add(rs.getInt("mon"));
+  					total_times[i].add(rs.getInt("tue"));
+  					total_times[i].add(rs.getInt("wed"));
+  					total_times[i].add(rs.getInt("thu"));
+  					total_times[i].add(rs.getInt("fri"));
+  					total_times[i].add(rs.getInt("sat"));
+  					total_times[i].add(rs.getInt("sun"));
+  						
+  					i++;
+  				}
+  				
+  				rs.close();
+  				stmt.close();
+  				conn.close();
+  				
+  			}catch(Exception e){
+  				
+  			}
+  			
+  			// 환자 전체의 값을 다 저장하여 평균을 내기 위함
+  			ArrayList<Boolean>[] pie = new ArrayList[pie_size];
+  			for(int i = 0; i < pie.length; i++) {
+  				pie[i] = new ArrayList<>();
+  			}
+  			
+  			int total_pie_true = 0; // true 개수 체크
+  			int total_pie_false = 0; // false 개수 체크			
+  			
+  			// pie 차트용
+  			try{			
+  				
+  				Class.forName("com.mysql.jdbc.Driver");
+  				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+  				Statement stmt = conn.createStatement();	
+  				ResultSet rs = stmt.executeQuery("SELECT * FROM achieve");
+  				
+  				int i = 0; //ArrayList 배열 인덱스
+  				while(rs.next()) {
+  					
+  					pie[i].add(rs.getBoolean("mon"));
+  					pie[i].add(rs.getBoolean("tue"));
+  					pie[i].add(rs.getBoolean("wed"));
+  					pie[i].add(rs.getBoolean("thu"));
+  					pie[i].add(rs.getBoolean("fri"));
+  					pie[i].add(rs.getBoolean("sat"));
+  					pie[i].add(rs.getBoolean("sun"));
+  					
+  					i++;
+  				}
+  				rs.close();
+  				stmt.close();
+  				conn.close();
+  				
+  			}catch(Exception e){
+  				
+  			}
+  			
+  			for(int i = 0; i < pie_size; i++) {
+  				for(int j = 0; j < pie[i].size(); j++) {
+  					if(pie[i].get(j) == true)
+  						total_pie_true++;
+  					else
+  						total_pie_false++;
+  				}
+  			}
+  			
+  			double pie_result_true = ((double)total_pie_true / 7) / pie_size; // 반올림하기 위함
+  			total_pie_true = (int)Math.round(pie_result_true * 100);
+  			double pie_result_false = ((double)total_pie_false / 7) / pie_size; // 반올림하기 위함
+  			total_pie_false = (int)Math.round(pie_result_false * 100);
+  			
+  			ArrayList<Integer> result = new ArrayList<>();
+  			for(int i = 0; i < bar_size; i++) {
+  				for(int j = 0; j < total_times[i].size(); j++) {
+  					if(result.size() < 7)
+  						result.add(total_times[i].get(j));
+  					else{
+  						result.set(j, result.get(j) + total_times[i].get(j));
+  					}
+  				}
+  			}
+  			
+  			// 평균 처리
+  			for(int i = 0; i < result.size(); i++) {
+  				result.set(i, result.get(i) / bar_size);
+  			}
+  			
+  			%>
+		<script>
+			let barchartData = [];
+			var true_pie = <%= total_pie_true%>;
+			var false_pie = <%= total_pie_false%>;
+			
+			<%
+			for(int i : result) {%>				
+				barchartData.push(<%= i %>);					
+			<%}%>
+		</script>
   	   <!DOCTYPE html>
   	    <html lang="ko">
 
@@ -40,10 +201,14 @@
 
   	        <!-- Template Main CSS File -->
   	        <link href="assets/css/style.css" rel="stylesheet">
+  	        
+  	        <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+			<script type="text/javascript" src="js/demo/chart-bar-demo.js"></script>
+			<script type="text/javascript" src="js/demo/chart-pie-demo.js"></script>
 
   	    </head>
 
-  	    <body>
+  	    <body onload="displayChart(barchartData); displayPieChart(true_pie, false_pie);">
 
   	        <!-- ======= Top Bar ======= -->
   	        <section id="topbar" class="d-flex align-items-center">
@@ -205,7 +370,7 @@
                 <label class="form-check-label" for="age1">
                   10대
                 </label><br>
-                <input class="form-check-input" type="radio" name="age" id="age2" value="20">
+                <input class="form-check-input" type="radio" name="age" id="age2" value="20" checked>
                 <label class="form-check-label" for="age2">
                   20대
                 </label><br>
@@ -234,7 +399,7 @@
                 <label class="form-check-label" for="gender1">
                   남
                 </label><br>
-                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24">
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24" checked>
                 <label class="form-check-label" for="gender2">
                   여
                 </label>
@@ -646,11 +811,6 @@
 
   	        <!-- Page level plugins -->
   	        <script src="vendor/chart.js/Chart.min.js"></script>
-
-  	        <!-- Page level custom scripts -->
-  	        <script src="js/demo/chart-area-demo.js"></script>
-  	        <script src="js/demo/chart-pie-demo.js"></script>
-  	        <script src="js/demo/chart-bar-demo.js"></script>
 
   	        <!-- Template Main JS File -->
   	        <script src="assets/js/main.js"></script>
