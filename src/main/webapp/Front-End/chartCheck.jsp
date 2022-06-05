@@ -22,7 +22,10 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("select * from user, time where user.user_id = time.user_id and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%');");
+			ResultSet rs = stmt.executeQuery(
+					"select * from user, time where user.user_id = time.user_id " + 
+					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
+					"and user.device_type = '" + device + "';");
 			
 			while(rs.next()) {
 				
@@ -43,7 +46,9 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%');");
+			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id " +
+					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
+					"and user.device_type = '" + device + "';");
 			
 			while(rs.next()) {
 				
@@ -71,7 +76,10 @@
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("select * from user, time where user.user_id = time.user_id and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%');");
+			ResultSet rs = stmt.executeQuery(
+					"select * from user, time where user.user_id = time.user_id " + 
+					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
+					"and user.device_type = '" + device + "';");
 			
 			int i = 0; // ArrayList배열 인덱스
 			while(rs.next()) {
@@ -109,8 +117,10 @@
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-			Statement stmt = conn.createStatement();	
-			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%');");
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id " +
+					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
+					"and user.device_type = '" + device + "';");
 			
 			int i = 0; //ArrayList 배열 인덱스
 			while(rs.next()) {
