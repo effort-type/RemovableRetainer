@@ -402,35 +402,6 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="info-box mb-4" style="height: 170px;">
-              <input type="checkbox" class="btn-check" id="btn-check-outlined3" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btn-check-outlined3">시간대</label>
-              <div class="form-check"><br>
-                <input class="form-check-input" type="radio" name="time" id="time1" value="0004">
-                <label class="form-check-label" for="time1">
-                  0 ~ 4시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time2" value="0509">
-                <label class="form-check-label" for="time2">
-                  5 ~ 9시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time3" value="1014">
-                <label class="form-check-label" for="time3">
-                  10 ~ 14시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time4" value="1519">
-                <label class="form-check-label" for="time4">
-                  15 ~ 19시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time5" value="2024">
-                <label class="form-check-label" for="time5">
-                  20 ~ 24시간
-                </label>
-              </div>
-
-            </div>
-          </div>
           <div class="col-lg-2">
             <div class="info-box mb-4" style="height: 170px;">
               <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off" checked disabled>

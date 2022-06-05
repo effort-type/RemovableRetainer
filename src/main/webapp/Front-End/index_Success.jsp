@@ -192,126 +192,76 @@
 
 
   	                    <!-- Page Heading  <h1>여기에 라디오 박스?</h1> -->
-  	                    <div class="row align-items-center" data-aos="fade-up" data-aos-delay="100">
-  	                        <div class="col-lg-1"></div>
-  	                        <div class="col-lg-3">
-  	                            <div class="info-box mb-4" style="height: 170px;">
-  	                                <input type="checkbox" class="btn-check" id="btn-check-outlined1" autocomplete="off">
-  	                                <label class="btn btn-outline-primary" for="btn-check-outlined1">나이대</label>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-  	                                    <label class="form-check-label" for="exampleRadios1">
-  	                  10대
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  	                                    <label class="form-check-label" for="exampleRadios2">
-  	                  20대
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-  	                                    <label class="form-check-label" for="exampleRadios3">
-  	                  30대
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-  	                                    <label class="form-check-label" for="exampleRadios4">
-  	                  40대
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5">
-  	                                    <label class="form-check-label" for="exampleRadios5">
-  	                  50대 이상
-  	                </label>
-  	                                </div>
-  	                            </div>
-  	                        </div>
-  	                        <div class="col-lg-3">
-  	                            <div class="info-box mb-4" style="height: 170px;">
-  	                                <input type="checkbox" class="btn-check" id="btn-check-outlined2" autocomplete="off">
-  	                                <label class="btn btn-outline-primary" for="btn-check-outlined2">성별</label>
-  	                                <div></div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-  	                                    <label class="form-check-label" for="exampleRadios1">
-  	                  남
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  	                                    <label class="form-check-label" for="exampleRadios2">
-  	                  여
-  	                </label>
-  	                                </div>
-  	                            </div>
-  	                        </div>
-  	                        <div class="col-lg-3">
-  	                            <div class="info-box mb-4" style="height: 170px;">
-  	                                <input type="checkbox" class="btn-check" id="btn-check-outlined3" autocomplete="off">
-  	                                <label class="btn btn-outline-primary" for="btn-check-outlined3">시간대</label>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-  	                                    <label class="form-check-label" for="exampleRadios1">
-  	                  00:00 ~ 06:00
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  	                                    <label class="form-check-label" for="exampleRadios2">
-  	                  07:00 ~ 10:00
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-  	                                    <label class="form-check-label" for="exampleRadios3">
-  	                  11:00 ~ 14:00
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-  	                                    <label class="form-check-label" for="exampleRadios4">
-  	                  15:00 ~ 18:00
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5">
-  	                                    <label class="form-check-label" for="exampleRadios5">
-  	                  19:00 ~ 23:00
-  	                </label>
-  	                                </div>
-  	                            </div>
-  	                        </div>
-  	                        <div class="col-lg-2">
-  	                            <div class="info-box mb-4" style="height: 170px;">
-  	                                <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off" checked disabled>
-  	                                <label class="btn btn-outline-primary" for="btn-check-outlined4">종류</label>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-  	                                    <label class="form-check-label" for="exampleRadios1">
-  	                  가철식교정유지장치
-  	                </label>
-  	                                </div>
-  	                                <div class="form-check">
-  	                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-  	                                    <label class="form-check-label" for="exampleRadios2">
-  	                  페이스마스크
-  	                </label>
-  	                                </div>
-
-  	                            </div>
-  	                        </div>
-
-
-  	                    </div>
-  	                    <div class="d-sm-flex align-items-center justify-content-center mb-4">
-  	                        <input type="checkbox" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
-  	                        <label class="btn btn-outline-secondary" for="btn-check-2-outlined">조회</label><br>
-  	                    </div>
-
+  	                    <form action="chartCheck.jsp" method="post">
+        <div class="row align-items-center" data-aos="fade-up" data-aos-delay="50">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-3">
+            <div class="info-box mb-4" style="height: 170px;">
+              <input type="checkbox" class="btn-check" id="btn-check-outlined1" autocomplete="off">
+              <label class="btn btn-outline-primary" for="btn-check-outlined1">나이대</label>
+              <div class="form-check">
+                <br>
+                <input class="form-check-input" type="radio" name="age" id="age1" value="10">
+                <label class="form-check-label" for="age1">
+                  10대
+                </label><br>
+                <input class="form-check-input" type="radio" name="age" id="age2" value="20">
+                <label class="form-check-label" for="age2">
+                  20대
+                </label><br>
+                <input class="form-check-input" type="radio" name="age" id="age3" value="30">
+                <label class="form-check-label" for="age3">
+                  30대
+                </label><br>
+                <input class="form-check-input" type="radio" name="age" id="age4" value="40">
+                <label class="form-check-label" for="age4">
+                  40대
+                </label><br>
+                <input class="form-check-input" type="radio" name="age" id="age5" value="50">
+                <label class="form-check-label" for="age5">
+                  50대 이상
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="info-box mb-4" style="height: 170px;">
+              <input type="checkbox" class="btn-check" id="btn-check-outlined2" autocomplete="off">
+              <label class="btn btn-outline-primary" for="btn-check-outlined2">성별</label>
+              <div></div>
+              <div class="form-check"><br>
+                <input class="form-check-input" type="radio" name="gender" id="gender1" value="13">
+                <label class="form-check-label" for="gender1">
+                  남
+                </label><br>
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="24">
+                <label class="form-check-label" for="gender2">
+                  여
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="info-box mb-4" style="height: 170px;">
+              <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off" checked disabled>
+              <label class="btn btn-outline-primary" for="btn-check-outlined4">종류</label>
+              <div class="form-check"><br>
+                <input class="form-check-input" type="radio" name="device" id="device1" value="D" checked>
+                <label class="form-check-label" for="device1">
+                  가철식교정유지장치
+                </label><br>
+                <input class="form-check-input" type="radio" name="device" id="device2" value="F">
+                <label class="form-check-label" for="device2">
+                  페이스마스크
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="d-sm-flex align-items-center justify-content-center mb-4">
+            <input type="submit" class="btn-check" id="btn-check-2-outlined" checked autocomplete="off">
+            <label class="btn btn-outline-secondary" for="btn-check-2-outlined">조회</label><br>
+          </div>
+          </form>
 
   	                    <!-- Content Row -->
   	                    <div class="row">

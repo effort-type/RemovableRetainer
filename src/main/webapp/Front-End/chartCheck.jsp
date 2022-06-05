@@ -7,11 +7,7 @@
     request.setCharacterEncoding("UTF-8");	
 		String age = request.getParameter("age"); // 나이대별로 값 들어옴 10대면 10, 20대면 20
 		String gender = request.getParameter("gender"); // 남자는 13, 여자는 24
-		String time = request.getParameter("time"); // 0004, 0509, 1014, 1519, 2024로 들어옴
 		String device = request.getParameter("device"); // D, F로 들어옴
-		
-		// user 테이블에서 ssn의 8번째 인덱스가 1또는 3이면 남자, 2또는 4면 여자
-		
 		
 		// 평균 값 계산하기 위함
 		int bar_size = 0;
@@ -25,13 +21,18 @@
 			ResultSet rs = stmt.executeQuery(
 					"select * from user, time where user.user_id = time.user_id " + 
 					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
-					"and user.device_type = '" + device + "';");
+					"and user.device_type = '" + device + "'" +
+					"and (CASE SUBSTRING(user.user_ssn,8,1)" +
+						"WHEN 1 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 2 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 3 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) )" +
+						"WHEN 4 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) ) END like '" + age.charAt(0) + "%'" +
+					");");
 			
 			while(rs.next()) {
 				
 				bar_size = rs.getRow();
 			}
-			System.out.println(bar_size);
 			rs.close();
 			stmt.close();
 			conn.close();
@@ -48,7 +49,13 @@
 			Statement stmt = conn.createStatement();	
 			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id " +
 					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
-					"and user.device_type = '" + device + "';");
+					"and user.device_type = '" + device + "'" +
+					"and (CASE SUBSTRING(user.user_ssn,8,1)" +
+						"WHEN 1 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 2 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 3 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) )" +
+						"WHEN 4 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) ) END like '" + age.charAt(0) + "%'" +
+					");");
 			
 			while(rs.next()) {
 				
@@ -79,7 +86,13 @@
 			ResultSet rs = stmt.executeQuery(
 					"select * from user, time where user.user_id = time.user_id " + 
 					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
-					"and user.device_type = '" + device + "';");
+					"and user.device_type = '" + device + "'" +
+					"and (CASE SUBSTRING(user.user_ssn,8,1)" +
+						"WHEN 1 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 2 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 3 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) )" +
+						"WHEN 4 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) ) END like '" + age.charAt(0) + "%'" +
+					");");
 			
 			int i = 0; // ArrayList배열 인덱스
 			while(rs.next()) {
@@ -120,8 +133,13 @@
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from achieve, user where achieve.user_id = user.user_id " +
 					"and (user.user_ssn like '%-" + gender.substring(0,1) +"%' or user.user_ssn like '%-"+ gender.substring(1,2) + "%')" +
-					"and user.device_type = '" + device + "';");
-			
+					"and user.device_type = '" + device + "'" +
+					"and (CASE SUBSTRING(user.user_ssn,8,1)" +
+						"WHEN 1 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 2 THEN YEAR(now()) - ((left(user.user_ssn,2) + 1900) )" +
+						"WHEN 3 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) )" +
+						"WHEN 4 THEN YEAR(now()) - ((left(user.user_ssn,2) + 2000) ) END like '" + age.charAt(0) + "%'" +
+					");");
 			int i = 0; //ArrayList 배열 인덱스
 			while(rs.next()) {
 				
@@ -339,35 +357,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="info-box mb-4" style="height: 170px;">
-              <input type="checkbox" class="btn-check" id="btn-check-outlined3" autocomplete="off">
-              <label class="btn btn-outline-primary" for="btn-check-outlined3">시간대</label>
-              <div class="form-check"><br>
-                <input class="form-check-input" type="radio" name="time" id="time1" value="0004">
-                <label class="form-check-label" for="time1">
-                  0 ~ 4시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time2" value="0509">
-                <label class="form-check-label" for="time2">
-                  5 ~ 9시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time3" value="1014">
-                <label class="form-check-label" for="time3">
-                  10 ~ 14시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time4" value="1519">
-                <label class="form-check-label" for="time4">
-                  15 ~ 19시간
-                </label><br>
-                <input class="form-check-input" type="radio" name="time" id="time5" value="2024">
-                <label class="form-check-label" for="time5">
-                  20 ~ 24시간
-                </label>
-              </div>
 
-            </div>
-          </div>
           <div class="col-lg-2">
             <div class="info-box mb-4" style="height: 170px;">
               <input type="checkbox" class="btn-check" id="btn-check-outlined4" autocomplete="off" checked disabled>
