@@ -9,6 +9,7 @@
 </head>
 <body>
 <%     
+	request.setCharacterEncoding("UTF-8");
 	String hospital_id = request.getParameter("hospital_id");
 	String hospital_name = request.getParameter("hospital_name");
 	String head_name = request.getParameter("head_name");
@@ -38,7 +39,7 @@
 		}catch(SQLException e){
 			out.println(e);
 		}
-	response.sendRedirect("../Front-End/hospitalInfoTab.jsp);
+	response.sendRedirect("../Front-End/hospitalInfoTab.jsp");
 %>
 </body>
 </html>
