@@ -31,7 +31,7 @@
 		}catch(SQLException e){
 			out.println(e);
 		}
-	response.sendRedirect("../Front-End/doctorInfoTab.jsp);
+	response.sendRedirect("../Front-End/doctorInfoTab.jsp");
 %>
 </body>
 </html>
