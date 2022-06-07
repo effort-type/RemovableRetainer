@@ -44,7 +44,7 @@
 			%>
 			<script>
 				alert("공지사항 등록 성공");
-				location.href = "../Front-End/hospitalInfoTab.jsp"
+				location.href = "../Front-End/announcementTab.jsp"
 			</script>
 			<%
 		}
