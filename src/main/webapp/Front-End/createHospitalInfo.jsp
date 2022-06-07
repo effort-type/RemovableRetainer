@@ -81,6 +81,12 @@
 							</div>
 						</div>
 					</li>
+					<!-- Divider -->
+					<hr class="sidebar-divider my-0">
+		
+					<li class="nav-item"><a class="nav-link" href="announcementTab.jsp">
+							<i class="fas fa-fw fa-cog"></i> <span>공지사항 등록</span>
+					</a></li>
 
 				</ul>
 				<!-- End of Sidebar -->

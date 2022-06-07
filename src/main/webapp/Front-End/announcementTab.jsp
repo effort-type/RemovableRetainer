@@ -64,7 +64,7 @@ String pw = (String)session.getAttribute("admin_pw");
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="hospitalInfoTab.jsp">
+			<li class="nav-item"><a class="nav-link" href="hospitalInfoTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
 
@@ -86,14 +86,12 @@ String pw = (String)session.getAttribute("admin_pw");
 						<div class="collapse-divider"></div>
 					</div>
 				</div></li>
-			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link" href="announcementTab.jsp">
+			<li class="nav-item active"><a class="nav-link" href="announcementTab.jsp">
 					<i class="fas fa-fw fa-cog"></i> <span>공지사항 등록</span>
 			</a></li>
-
 		</ul>
 		<!-- End of Sidebar -->
 		<!-- Content Wrapper -->
@@ -174,69 +172,27 @@ String pw = (String)session.getAttribute("admin_pw");
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">병원 목록</h1>
-					<p class="mb-4">시스템을 사용하는 병원 정보를 확인할 수 있습니다.</p>
+					<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
+					<p class="mb-4">홈페이지에 공지사항을 등록할 수 있습니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">병원 목록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">공지사항 등록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-
-								<%
-        						Class.forName("com.mysql.jdbc.Driver");
-								try{
-									Connection conn = DriverManager.getConnection
-											("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-									Statement stmt = conn.createStatement();	
-									ResultSet rs = stmt.executeQuery
-											("SELECT hospital_id,hospital_name, head_name FROM hospital"); 
-								%>
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>아이디</th>
-											<th>병원명</th>
-											<th>병원장 이름</th>
-											<th>삭제</th>
-											<th>수정</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>아이디</th>
-											<th>병원명</th>
-											<th>병원장 이름</th>
-											<th>삭제</th>
-											<th>수정</th>
-										</tr>
-									</tfoot>
-
-									<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
-
-									<tbody>
-									<%
-									while(rs.next()){
-									%>	<tr>
-											<th><%=rs.getString("hospital_id") %></th>
-											<td><a href="../Front-End/hospitalInfoDetail.jsp?hospital_id=<%=rs.getString("hospital_id") %>"><%=rs.getString("hospital_name") %></a></td>
-											<td><%=rs.getString("head_name") %></td>
-											<td><a onclick="return confirm('병원 정보를 삭제합니다.')" href="../Back-End/hospitalInfoDelete.jsp?hospital_id=<%=rs.getString("hospital_id") %>">삭제</a></td>
-											<td><a href="../Front-End/hospitalInfoDetail.jsp?hospital_id=<%=rs.getString("hospital_id") %>">수정</a></td>
-										</tr>
-									<%
-									}	
-									%>
-									</tbody>
-								</table><%
-								rs.close();
-								stmt.close();
-								conn.close();}catch(SQLException e){
-									out.println("err:"+e.toString());
-								}
-								%>
+								<form mehod="post"	action="../Back-End/hospitalInfoUpdate.jsp?hospital_id=<%=hospital_id %>">
+									<label>제목</label>
+									<input type="text" class="table table-bordered" width="100%" id="public_header" name="public_header" required>
+									<label>내용</label>
+									<textarea style="resize: none; width: 100%; height: 100%;"></textarea>
+									<div style="text-align: right;">
+										<a href="hospitalInfoTab.jsp" class="btn btn-primary pull-right">취소</a>
+										<button type="submit" class="btn btn-primary pull-right" required>등록</button>
+									</div>
+									
+								</form>
 							</div>
 						</div>
 					</div>
