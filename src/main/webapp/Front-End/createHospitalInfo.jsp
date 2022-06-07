@@ -63,7 +63,7 @@
 					</a></li>
 
 					<!-- Divider -->
-					<hr class="sidebar-divider">
+					<hr class="sidebar-divider my-0">
 
 					<!-- Nav Item - Pages Collapse Menu -->
 					<li class="nav-item active"><a class="nav-link" href="createHospitalInfo.jsp"> <i
@@ -84,8 +84,16 @@
 					<!-- Divider -->
 					<hr class="sidebar-divider my-0">
 		
-					<li class="nav-item"><a class="nav-link" href="announcementTab.jsp">
+					<li class="nav-item"><a class="nav-link" href="announcementCreate.jsp">
 							<i class="fas fa-fw fa-cog"></i> <span>공지사항 등록</span>
+					</a></li>
+					
+					<!-- Divider -->
+					<hr class="sidebar-divider my-0">
+		
+					<!-- Nav Item - Dashboard -->
+					<li class="nav-item"><a class="nav-link" href="faqCreate.jsp">
+							<i class="fas fa-fw fa-cog"></i> <span>FAQ 등록</span>
 					</a></li>
 
 				</ul>
