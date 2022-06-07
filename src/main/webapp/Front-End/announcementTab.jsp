@@ -182,14 +182,14 @@ String pw = (String)session.getAttribute("admin_pw");
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<form mehod="post"	action="../Back-End/hospitalInfoUpdate.jsp?hospital_id=<%=hospital_id %>">
+								<form mehod="post"	action="../Back-End/publicSignup.jsp">
 									<label>제목</label>
 									<input type="text" class="table table-bordered" width="100%" id="public_header" name="public_header" required>
 									<label>내용</label>
-									<textarea style="resize: none; width: 100%; height: 100%;"></textarea>
+									<textarea style="resize: none; width: 100%; height: 100%;" required id="public_text" name="public_text"></textarea>
 									<div style="text-align: right;">
 										<a href="hospitalInfoTab.jsp" class="btn btn-primary pull-right">취소</a>
-										<button type="submit" class="btn btn-primary pull-right" required>등록</button>
+										<button type="submit" class="btn btn-primary pull-right">등록</button>
 									</div>
 									
 								</form>
