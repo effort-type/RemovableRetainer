@@ -20,7 +20,6 @@
 		String ssn = request.getParameter("ssn");		
 		String name = request.getParameter("name");
 		String user = request.getParameter("user");
-		char ch = user.charAt(0);
 		
 		// 비밀번호를 저장하기 위한 변수
 		String pw = "";
@@ -37,7 +36,7 @@
 		ResultSet rs = null;
 		
 		
-		if(user.equals("user") && (ch == 'p')) {
+		if(user.equals("user")) {
 			// 쿼리 실행, SQL문 SELECT 실행
 			rs = stmt.executeQuery("SELECT user_id, user_pw, user_name, user_ssn FROM user;");
 			
@@ -49,7 +48,7 @@
 					break;
 				}
 			}
-		}else if(user.equals("doctor") && (ch == 'd')) {
+		}else if(user.equals("doctor")) {
 			// 쿼리 실행, SQL문 SELECT 실행
 			rs = stmt.executeQuery("SELECT doctor_id, doctor_pw, doctor_name, doctor_ssn FROM doctor;");
 			
