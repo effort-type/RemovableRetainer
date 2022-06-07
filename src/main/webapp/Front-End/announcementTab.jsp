@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import ="java.text.SimpleDateFormat"%>
 <%@ page import="java.sql.*"%><%
 request.setCharacterEncoding("UTF-8");
 
@@ -69,12 +67,11 @@ String pw = (String)session.getAttribute("admin_pw");
 			<li class="nav-item"><a class="nav-link" href="hospitalInfoTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
-			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="announcementTab.jsp">
+			<li class="nav-item active"><a class="nav-link" href="announcementTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>공지사항 목록</span>
 			</a></li>
 			
@@ -85,6 +82,7 @@ String pw = (String)session.getAttribute("admin_pw");
 			<li class="nav-item"><a class="nav-link" href="faqTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>FAQ 목록</span>
 			</a></li>
+
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -104,10 +102,11 @@ String pw = (String)session.getAttribute("admin_pw");
 						<div class="collapse-divider"></div>
 					</div>
 				</div></li>
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item active"><a class="nav-link" href="announcementCreate.jsp">
+			<li class="nav-item"><a class="nav-link" href="announcementCreate.jsp">
 					<i class="fas fa-fw fa-cog"></i> <span>공지사항 등록</span>
 			</a></li>
 			
@@ -118,6 +117,7 @@ String pw = (String)session.getAttribute("admin_pw");
 			<li class="nav-item"><a class="nav-link" href="faqCreate.jsp">
 					<i class="fas fa-fw fa-cog"></i> <span>FAQ 등록</span>
 			</a></li>
+
 		</ul>
 		<!-- End of Sidebar -->
 		<!-- Content Wrapper -->
@@ -198,28 +198,70 @@ String pw = (String)session.getAttribute("admin_pw");
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
-					<p class="mb-4">홈페이지에 공지사항을 등록할 수 있습니다.</p>
+					<h1 class="h3 mb-2 text-gray-800">공지사항 목록</h1>
+					<p class="mb-4">등록되어 있는 공지사항을 확인할 수 있습니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">공지사항 등록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">공지사항 목록</h6>
 						</div>
-						
 						<div class="card-body">
 							<div class="table-responsive">
-								<form mehod="post"	action="../Back-End/publicSignup.jsp">
-									<label>제목</label>
-									<input type="text" class="table table-bordered" width="100%" id="public_header" name="public_header" required>
-									<label>내용</label>
-									<textarea style="resize: none; width: 100%; height: 100%;" required id="public_text" name="public_text" required></textarea>
-									<div style="text-align: right;">
-										<a href="hospitalInfoTab.jsp" class="btn btn-primary pull-right">취소</a>
-										<button type="submit" class="btn btn-primary pull-right">등록</button>
-									</div>
+
+								<%
+        						Class.forName("com.mysql.jdbc.Driver");
+								try{
+									Connection conn = DriverManager.getConnection
+											("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
+									Statement stmt = conn.createStatement();	
+									ResultSet rs = stmt.executeQuery
+											("SELECT header, public, admin_id, count FROM text"); 
+								%>
+								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>관리자 아이디</th>
+											<th>제목</th>
+											<th>등록 시간</th>
+											<th>삭제</th>
+											<th>수정</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<tr>
+											<th>관리자 아이디</th>
+											<th>제목</th>
+											<th>등록 시간</th>
+											<th>삭제</th>
+											<th>수정</th>
+										</tr>
+									</tfoot>
+
+									<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
+
+									<tbody>
+									<%
 									
-								</form>
+									while(rs.next()){
+									%>	<tr>
+											<th><%=rs.getString("admin_id") %></th>
+											<td><%=rs.getString("header") %></a></td>
+											<td><%=rs.getString("count") %></a></td>
+											<td><a onclick="return confirm('공지사항을 삭제합니다.')" href="../Back-End/publicDelete.jsp?co=<%=rs.getString("count")%>">삭제</a></td>
+											<td><a href="../Front-End/publicDetail.jsp">수정</a></td>
+										</tr>
+									<%
+									}	
+									%>
+									</tbody>
+								</table><%
+								rs.close();
+								stmt.close();
+								conn.close();}catch(SQLException e){
+									out.println("err:"+e.toString());
+								}
+								%>
 							</div>
 						</div>
 					</div>

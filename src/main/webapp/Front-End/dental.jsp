@@ -19,8 +19,8 @@
 	java.sql.Date now = new java.sql.Date(now_temp.getTime());
 	
 	
-// 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
-// 	String format = formatter.format(now);
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   // yyyy-MM-dd HH:mm:ss
+	String format = formatter.format(now);
 	
 	long result_time = 0; // 총 착용해야하는 일수
 	long now_time = 0; // 현재 착용한 일수

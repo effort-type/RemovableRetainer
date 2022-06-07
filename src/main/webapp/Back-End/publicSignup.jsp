@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"  %>
+<%@ page import="java.util.*" %>
+<%@ page import ="java.text.SimpleDateFormat"%>
 <%
 	String id = (String)session.getAttribute("admin_id");
 	String pw = (String)session.getAttribute("admin_pw");
@@ -23,6 +25,11 @@
 		String header = request.getParameter("public_header");
 		String text = request.getParameter("public_text");
 		
+		java.util.Date now_temp = new java.util.Date();
+		java.sql.Date now = new java.sql.Date(now_temp.getTime());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   // yyyy-MM-dd HH:mm:ss
+		String format = formatter.format(now);
+		
 		// JVM 메모리에 클래스 파일 업로드
 		Class.forName("com.mysql.jdbc.Driver");
 		// DB연결
@@ -30,7 +37,7 @@
 		// SQL문 저장하고 실행하기 위한 객체 생성
 		Statement stmt = conn.createStatement();
 		
-		String sql_insert = "insert into text values('" + header + "', '" + text + "', '" + id + "');";
+		String sql_insert = "insert into text values('" + header + "', '" + text + "', '" + id + "', '" + format +"');";
 		
 		int count = stmt.executeUpdate(sql_insert);
 		if(count == 1) {
