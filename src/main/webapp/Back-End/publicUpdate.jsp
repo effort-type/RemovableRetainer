@@ -15,20 +15,18 @@
 	String id = request.getParameter("admin_id");
 	String header = request.getParameter("public_header");
 	String public_text = request.getParameter("public_text");
-	String co = request.getParameter("co");
+	String co = request.getParameter("public_co");
 	
 	 
 	try{
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection
 			("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-		String sql = "update text set header=?,public=?,admin_id=?" +" where count=?";
+		String sql = "UPDATE text SET header=?, public=? WHERE count=?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, header);
 		pstmt.setString(2, public_text);
-		pstmt.setString(3, id);
-		pstmt.setString(4, co);
-		//pstmt.setString(5, co);
+		pstmt.setString(3, co);
 		pstmt.executeUpdate();
 		
 		pstmt.close();

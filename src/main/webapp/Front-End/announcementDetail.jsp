@@ -225,9 +225,11 @@ System.out.println(co);
 									<!-- Page Heading -->
 									<% while(rs.next()){ %>
 										<% System.out.println(rs.getString("public"));%>
-										<form mehod="post"	action="../Back-End/publicUpdate.jsp?co=<%=co%>">
+										<form method="post"	action="../Back-End/publicUpdate.jsp">
 											<label>제목</label>
 											<input type="text" class="table table-bordered" width="100%" id="public_header" name="public_header" value="<%=rs.getString("header") %>" required>
+											<label>등록 시간</label>
+											<input type="text" class="table table-bordered" readonly width="100%" id="public_header" name="public_co" value="<%=rs.getString("count") %>">
 											<label>내용</label>
 											<textarea style="resize: none; width: 100%; height: 100%;" id="public_text" name="public_text" required><%=rs.getString("public") %></textarea>
 											<div style="text-align: right;">
