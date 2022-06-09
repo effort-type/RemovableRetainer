@@ -6,7 +6,7 @@
 <%
 	String id = (String)session.getAttribute("user_id");	
 	session.setMaxInactiveInterval(3000);
-	if(id != null) {
+//	if(id != null) {
 	%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -53,7 +53,7 @@
 		// DB연결
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 		//세션의 id이용하여 쿼리문 작성
-		String str_Query = "SELECT * FROM test WHERE id = ?";
+		String str_Query = "SELECT * FROM user WHERE user_id = ?";
 		//Statement stmt = conn.createStatement();
 		PreparedStatement pstmt = conn.prepareStatement(str_Query);
 		pstmt.setString(1, id);
@@ -64,19 +64,19 @@
 		String dbId = null;
 		String dbName = null;
 		String dbSSN = null;
-		String dbTargetTime = null;
+		String dbDoctorId = null;
 		String dbPhoneNum = null;
-		String dbProtectorPhoneNum = null;
+		String dbFamilyPhoneNum = null;
 		String dbAddress = null;
+		String dbDiv = null;
 		
 		if(rs.next()) {
-			dbId = rs.getString("id");
-			dbName = rs.getString("name");
-			dbSSN = rs.getString("ssn");
-			dbTargetTime = rs.getString("targettime");
-			dbPhoneNum = rs.getString("phonenum");
-			dbProtectorPhoneNum = rs.getString("protectorphonenum");
-			dbAddress = rs.getString("address");
+			dbId = rs.getString("user_id");
+			dbName = rs.getString("user_name");
+			dbSSN = rs.getString("user_ssn");
+			dbPhoneNum = rs.getString("user_phone");
+			dbFamilyPhoneNum = rs.getString("family_phone");
+			dbAddress = rs.getString("user_address");
 			//후에 DB속성 추가후 더 넣어야함
 		}
 	
@@ -238,13 +238,13 @@
 										<th>주민 번호</th>
 											<td><%=dbSSN %></td>
 										<th>하루 착용 목표 시간</th>
-											<td><%=dbTargetTime %></td>
+											<td><%=dbDoctorId %></td>
 									</tr>
 									<tr>
 										<th>전화번호</th>
 											<td><%=dbPhoneNum %></td>
 										<th>보호자 전화번호</th>
-											<td><%=dbProtectorPhoneNum %></td>
+											<td><%=dbFamilyPhoneNum %></td>
 									</tr>
 									<tr>
 										<th>주소</th>
@@ -345,13 +345,4 @@
 </body>
 
 </html>
-<%
-	} else {
-		%>
-			<script>
-				alert('로그인이 필요한 페이지입니다.');
-				location = "login.html"
-			</script>
-<%
-	}
-%>
+

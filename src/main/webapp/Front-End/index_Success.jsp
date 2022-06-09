@@ -284,7 +284,7 @@
   	                    <!--about화면으로 넘어가는 버튼!-->
   	                    <a href="#about" class="btn-get-started scrollto">시스템 소개</a>
   	                    <!--버튼?누르면 바로 링크로 들어가서 영상보여주는듯 ㅇ-->
-  	                    <a href="https://www.youtube.com/watch?v=k02azAGf5ew" class="glightbox btn-watch-video"><i
+  	                    <a href="https://www.youtube.com/watch?v=9w_pzxvAsWs" class="glightbox btn-watch-video"><i
   	            class="bi bi-play-circle"></i><span>Watch Video</span></a>
   	                </div>
   	            </div>
@@ -299,44 +299,45 @@
   	            <section id="about" class="about section-bg">
   	                <div class="container" data-aos="fade-up">
 
-  	                    <div class="section-title">
-  	                        <h2>About</h2>
-  	                        <h3>알고있니~ <span>교정의민족</span></h3>
-  	                        <p>교정의 민족 어쩌구 우린 기기 머 그런 통계를 알려주는 사이트야~ 알간니요? 가가가가가가가간나나나나ㅏ다다다닫</p>
-  	                    </div>
-
-  	                    <div class="row">
-  	                        <div class="col-lg-1"></div>
-  	                        <div class="col-lg-5" data-aos="fade-right" data-aos-delay="100">
-  	                            <img src="assets/img/logo2.png" class="img-fluid" alt="">
-  	                        </div>
-  	                        <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-  	                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-  	                            <p class="fst-italic">
-  	                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-  	                            </p>
-  	                            <ul>
-  	                                <li>
-  	                                    <i class="bx bx-store-alt"></i>
-  	                                    <div class="middle">
-  	                                        <h5>가철식 교정 유지장치</h5>
-  	                                        <p>ㅇㅇMagni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
-  	                                    </div>
-  	                                </li>
-  	                                <li>
-  	                                    <i class="bx bx-images"></i>
-  	                                    <div class="middle">
-  	                                        <h5>페이스 마스크</h5>
-  	                                        <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
-  	                                    </div>
-  	                                </li>
-  	                            </ul>
-  	                            <p>
-  	                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fuㅇ아ㅏ아ㅏㅇgiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-  	                                anim id est laborum
-  	                            </p>
-  	                        </div>
-  	                    </div>
+						<div class="section-title">
+							<h2>About</h2>
+							<h3><span>교정의민족</span></h3>
+							<p>교정의 민족 서비스는 교정 유지 장치 착용에 대한 데이터 통계를 알려주는 서비스입니다.</p>
+						  </div>
+				  
+						  <div class="row">
+							<div class="col-lg-1"></div>
+							<div class="col-lg-5" data-aos="fade-right" data-aos-delay="100">
+								<img src="assets/img/logo2.png" class="img-fluid" alt="">
+							</div>
+							<div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
+							  data-aos-delay="100">
+							  <h3>교정 유지 장치 착용 관리</h3>
+							  <p class="fst-italic">
+								교정 후 유지 장치를 제대로 착용하고 있는지 아닌지 잘 모르겠다면 교정의 민족 서비스를 이용해보세요~
+							  </p>
+							  <ul>
+								<li>
+								  <i class="bx bx-store-alt"></i>
+								  <div class="middle">
+									<h5>가철식 교정 유지장치</h5>
+									<p>대표적으로 사용하는 교정 유지 장치</p>
+								  </div>
+								</li>
+								<li>
+								  <i class="bx bx-images"></i>
+								  <div class="middle">
+									<h5>페이스 마스크</h5>
+									<p>주걱턱 교정과 치아 교정을 동시에 했을 경우 사용하는 유지 장치</p>
+								  </div>
+								</li>
+							  </ul>
+							  <p>
+								지속적으로 본인의 치아 건강을 확인하며 착용 데이터를 시각적으로 확인하고 싶다면<br>
+								교정의 민족 서비스를 이용해보세요
+							  </p>
+							</div>
+				  
 
   	                </div>
   	            </section>
@@ -475,39 +476,38 @@
   	            <section id="reservation" class="reservation">
   	                <div class="container" data-aos="fade-up">
 
-  	                    <div class="section-title">
-  	                        <h2>Reservation</h2>
-  	                        <h3><span>Contact Us</span></h3>
-  	                        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.
-  	                        </p>
-  	                    </div>
-
-  	                    <div class="row" data-aos="fade-up" data-aos-delay="100">
-  	                        <div class="col-lg-6">
-  	                            <div class="info-box mb-4">
-  	                                <i class="bx bx-map"></i>
-  	                                <h3>Our Address</h3>
-  	                                <p>부산광역시 부산진구 엄광로 176, 정보공학관 9층</p>
-  	                            </div>
-  	                        </div>
-
-  	                        <div class="col-lg-3 col-md-6">
-  	                            <div class="info-box  mb-4">
-  	                                <i class="bx bx-envelope"></i>
-  	                                <h3>Email Us</h3>
-  	                                <p>SnG@email.com</p>
-  	                            </div>
-  	                        </div>
-
-  	                        <div class="col-lg-3 col-md-6">
-  	                            <div class="info-box  mb-4">
-  	                                <i class="bx bx-phone-call"></i>
-  	                                <h3>Call Us</h3>
-  	                                <p>+1 5589 55488 55</p>
-  	                            </div>
-  	                        </div>
-
-  	                    </div>
+						<div class="section-title">
+							<h2>Reservation</h2>
+							<h3><span>온라인 예약</span></h3>
+							<p>서비스 준비중</p>
+						  </div>
+				  
+						  <div class="row" data-aos="fade-up" data-aos-delay="100">
+							<div class="col-lg-6">
+							  <div class="info-box mb-4">
+								<i class="bx bx-map"></i>
+								<h3>Our Address</h3>
+								<p>부산광역시 부산진구 엄광로 176, 정보공학관 9층</p>
+							  </div>
+							</div>
+				  
+							<div class="col-lg-3 col-md-6">
+							  <div class="info-box  mb-4">
+								<i class="bx bx-envelope"></i>
+								<h3>Email Us</h3>
+								<p>SnG@email.com</p>
+							  </div>
+							</div>
+				  
+							<div class="col-lg-3 col-md-6">
+							  <div class="info-box  mb-4">
+								<i class="bx bx-phone-call"></i>
+								<h3>Call Us</h3>
+								<p>051-890-1724</p>
+							  </div>
+							</div>
+				  
+						  </div>
 
   	                    <div class="row" data-aos="fade-up" data-aos-delay="100">
 
@@ -694,7 +694,7 @@
   	                            <br>
   	                            <p>
   	                                <br>
-  	                                <strong>20183152</strong><br>
+  	                                <strong>20183127</strong><br>
   	                                <h4> 윤재혁</h4><br>
   	                            </p>
   	                        </div>
@@ -703,7 +703,7 @@
   	                            <br>
   	                            <p>
   	                                <br>
-  	                                <strong>20183152</strong><br>
+  	                                <strong>20193163</strong><br>
   	                                <h4> 김희진</h4><br>
   	                            </p>
   	                        </div>
@@ -712,7 +712,7 @@
   	                            <br>
   	                            <p>
   	                                <br>
-  	                                <strong>20183152</strong><br>
+  	                                <strong>20183119</strong><br>
   	                                <h4> 송준호</h4><br>
   	                            </p>
   	                        </div>

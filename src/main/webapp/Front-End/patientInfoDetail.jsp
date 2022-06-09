@@ -174,7 +174,7 @@ String id = (String)session.getAttribute("doctor_id");
 							pstmt.setString(1, user_id);
 							ResultSet rs = pstmt.executeQuery();
 						%>
-						<form mehod="post" action="../Back-End/patientInfoUpdate.jsp?user_id=<%=user_id %>">
+					<form mehod="post" action="../Back-End/patientInfoUpdate.jsp?user_id=<%=user_id %>">
 					<!-- Page Heading -->
 					<% while(rs.next()){ %>					
 					<h1 class="h3 mb-2 text-gray-800"><%=rs.getString("user_name") %></h1>
