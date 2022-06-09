@@ -69,6 +69,8 @@
 		String dbFamilyPhoneNum = null;
 		String dbAddress = null;
 		String dbDiv = null;
+		String dbStartDate = null;
+		String dbEndDate = null;
 		
 		if(rs.next()) {
 			dbId = rs.getString("user_id");
@@ -77,6 +79,10 @@
 			dbPhoneNum = rs.getString("user_phone");
 			dbFamilyPhoneNum = rs.getString("family_phone");
 			dbAddress = rs.getString("user_address");
+			dbDoctorId = rs.getString("doctor_id");
+			dbDiv = rs.getString("device_type");
+			dbStartDate = rs.getString("device_start");
+			dbEndDate = rs.getString("device_end");
 			//후에 DB속성 추가후 더 넣어야함
 		}
 	
@@ -114,11 +120,6 @@
 			<!-- Nav Item - Charts -->
 			<li class="nav-item "><a class="nav-link" href="charts.jsp">
 					<i class="fas fa-fw fa-chart-area"></i> <span>Charts</span>
-			</a></li>
-
-			<!-- Nav Item - Tables -->
-			<li class="nav-item"><a class="nav-link" href="tables.jsp">
-					<i class="fas fa-fw fa-table"></i> <span>Tables</span>
 			</a></li>
 
 		</ul>
@@ -208,16 +209,6 @@
 						<h1 class="h3 mb-0 text-gray-800">개인 정보</h1>
 					</div>
 					<div>
-						ID : <%= dbId %>
-						이름 : <%= dbName %>
-						주민번호 : 
-						병원 : 
-						담당의사 :
-						유지장치 종류 : 
-						유지장치 착용 시작일 :
-						유지장치 착용 종료일 :
-						
-						 
 						<div class="card shadow mb-4">
 						<div class="card-body">
 								
@@ -237,7 +228,7 @@
 											<td><%=dbId %></td>
 										<th>주민 번호</th>
 											<td><%=dbSSN %></td>
-										<th>하루 착용 목표 시간</th>
+										<th>담당의사 ID</th>
 											<td><%=dbDoctorId %></td>
 									</tr>
 									<tr>
@@ -247,10 +238,18 @@
 											<td><%=dbFamilyPhoneNum %></td>
 									</tr>
 									<tr>
+										<th>착용 장치</th>
+											<td><%=dbDiv %></td>
+										<th>착용 시작일</th>
+											<td><%=dbStartDate %></td>
+										<th>착용 종료일</th>
+											<td><%=dbEndDate %></td>
+											
+									</tr>
+									<tr>
 										<th>주소</th>
 											<td><%=dbAddress %></td>
 									</tr>
-										
 									</tbody>
 								</table>
 							</div>
@@ -345,4 +344,14 @@
 </body>
 
 </html>
-
+<%
+	//} else {
+		%>
+			<!-- <script>
+				alert('로그인이 필요한 페이지입니다.');
+				location = "login.html"
+			</script> -->
+		<%
+	//}
+		%>
+		

@@ -5,9 +5,9 @@
 
 
 <%
-	String id = (String)session.getAttribute("id");	
+	String id = (String)session.getAttribute("user_id");	
 	session.setMaxInactiveInterval(3000);
-	if(id != null) {
+	//if(id != null) {
 	%>
 <!DOCTYPE html>
 <html>
@@ -23,17 +23,16 @@
 	String nowpw = request.getParameter("nowpw");
 	String corpw = request.getParameter("corpw");
 	String corpwcheck = request.getParameter("corpwcheck");
-	String targettime = request.getParameter("targettime");
 	String phonenum = request.getParameter("phonenum");
 	String protectorphonenum = request.getParameter("protectorphonenum");
-	String address = request.getParameter("address");
+	String address = request.getParameter("user_address");
 	
 	try{
 		// JVM 메모리에 클래스 파일 업로드
 		Class.forName("com.mysql.jdbc.Driver");
 		// DB연결
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-		String str_Query = "SELECT * FROM test WHERE id = ?";
+		String str_Query = "SELECT * FROM user WHERE user_id = ?";
 		//Statement stmt = conn.createStatement();
 		PreparedStatement pstmt = conn.prepareStatement(str_Query);
 		pstmt.setString(1, id);
@@ -43,7 +42,7 @@
 		
 		
 		if(rs.next()) {
-			if(!nowpw.equals(rs.getString("pw"))) {
+			if(!nowpw.equals(rs.getString("user_pw"))) {
 				%>
 		        <script>
 		            alert("현재 패스워드가 일치하지 않습니다.");
@@ -60,15 +59,14 @@
 		        <%
 			}
 			else if(corpw == "") {
-					String sql = "UPDATE test SET targettime=?, phonenum=?, protectorphonenum=?, address=? WHERE id=?";
+					String sql = "UPDATE user SET user_phone=?, family_phone=?, user_address=? WHERE user_id=?";
 						
 					pstmt = conn.prepareStatement(sql);
 					
-					pstmt.setString(1, targettime);
-					pstmt.setString(2, phonenum);
-					pstmt.setString(3, protectorphonenum);
-					pstmt.setString(4, address);
-					pstmt.setString(5, id);
+					pstmt.setString(1, phonenum);
+					pstmt.setString(2, protectorphonenum);
+					pstmt.setString(3, address);
+					pstmt.setString(4, id);
 					pstmt.executeUpdate();
 				%>
 		        <script>
@@ -78,16 +76,15 @@
 		        <%
 			}
 			else {
-				String sql = "UPDATE test SET pw=?, targettime=?, phonenum=?, protectorphonenum=?, address=? WHERE id=?";
+				String sql = "UPDATE user SET user_pw=?, user_phone=?, family_phone=?, user_address=? WHERE user_id=?";
 				
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, corpw);
-				pstmt.setString(2, targettime);
-				pstmt.setString(3, phonenum);
-				pstmt.setString(4, protectorphonenum);
-				pstmt.setString(5, address);
-				pstmt.setString(6, id);
+				pstmt.setString(2, phonenum);
+				pstmt.setString(3, protectorphonenum);
+				pstmt.setString(4, address);
+				pstmt.setString(5, id);
 				pstmt.executeUpdate();
 				%>
 		        <script>
@@ -96,8 +93,15 @@
 		        </script>
 		        <%
 			}
+		} else {
+			%>
+	        <script>
+	            alert("오류.");
+	            location.href = "../Front-End/UserProfile.jsp"
+	        </script>
+	        <%
 		}
-	
+		
 	
 	
 	
@@ -114,12 +118,12 @@
 </body>
 </html>
 <%
-	} else {
+	//} else {
 		%>
-			<script>
+			<!-- <script>
 				alert('로그인이 필요한 페이지입니다.');
 				location = "login.html"
-			</script>
+			</script> -->
 <%
-	}
+	//}
 %>

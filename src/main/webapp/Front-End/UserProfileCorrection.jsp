@@ -6,7 +6,7 @@
 <%
 	String id = (String)session.getAttribute("user_id");	
 	session.setMaxInactiveInterval(3000);
-	if(id != null) {
+	//if(id != null) {
 	%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -53,7 +53,7 @@
 		// DB연결
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
 		//세션의 id이용하여 쿼리문 작성
-		String str_Query = "SELECT * FROM test WHERE id = ?";
+		String str_Query = "SELECT * FROM user WHERE user_id = ?";
 		//Statement stmt = conn.createStatement();
 		PreparedStatement pstmt = conn.prepareStatement(str_Query);
 		pstmt.setString(1, id);
@@ -61,17 +61,15 @@
 		ResultSet rs = pstmt.executeQuery();
 		
 		String dbPw = null;
-		String dbTargetTime = null;
-		String dbPhoneNum = null;
-		String dbProtectorPhoneNum = null;
+		String dbPhone = null;
+		String dbFamilyPhone = null;
 		String dbAddress = null;
 		
 		if(rs.next()) {
-			dbPw = rs.getString("pw");
-			dbTargetTime = rs.getString("targettime");
-			dbPhoneNum = rs.getString("phonenum");
-			dbProtectorPhoneNum = rs.getString("protectorphonenum");
-			dbAddress = rs.getString("address");
+			dbPw = rs.getString("user_pw");
+			dbPhone = rs.getString("user_phone");
+			dbFamilyPhone = rs.getString("family_phone");
+			dbAddress = rs.getString("user_address");
 		}
 	
 	%>
@@ -231,20 +229,18 @@
 										placeholder="PW 확인" minlength="4" maxlength="8">
 								</div>
 								<div class="col-md-12">
-									목표 시간 : <input type="text" class="form-control" name="targettime"
-										placeholder="목표 시간" value="<%=dbTargetTime%>" required>
-								</div>
-								<div class="col-md-12">
 									전화 번호 : <input type="text" class="form-control" name="phonenum"
-										placeholder="전화 번호" value="<%=dbPhoneNum%>" required>
+										placeholder="전화 번호" value="<%=dbPhone%>" required>
 								</div>
 								<div class="col-md-12">
 									보호자 전화 번호 : <input type="text" class="form-control" name="protectorphonenum"
-										placeholder="보호자 전화 번호" value="<%=dbProtectorPhoneNum%>" required>
+										placeholder="보호자 전화 번호" value="<%=dbFamilyPhone%>" required>
 								</div>
 								<div class="col-md-12">
-									주소 : <input type="text" class="form-control" name="address"
-										placeholder="주소" minlength="1" maxlength="30" value="<%=dbAddress%>" required>
+									주소 : <textarea class="form-control" placeholder="주소" name="user_address"
+                                 		maxlength="512"><%= dbAddress %></textarea>
+									<%-- 주소 : <input type="text" class="form-control" name="address"
+										placeholder="주소" minlength="1" maxlength="30" value="<%=dbAddress%>" required> --%>
 								</div>
 								<div class="col-md-4">
 									<!-- <button type="submit" class="btn btn-primary">수정 완료</button> -->
@@ -340,12 +336,12 @@
 
 </html>
 <%
-	} else {
+	//} else {
 		%>
-			<script>
+			<!-- <script>
 				alert('로그인이 필요한 페이지입니다.');
 				location = "login.html"
-			</script>
+			</script> -->
 <%
-	}
+	//}
 %>
