@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%><%
+<%@ page import="java.util.*" %>
+<%@ page import ="java.text.SimpleDateFormat"%>
+<%@ page import="java.sql.*"%>
+<%
 request.setCharacterEncoding("UTF-8");
 
 String id = (String)session.getAttribute("admin_id");
 String pw = (String)session.getAttribute("admin_pw");
-
+String co = request.getParameter("co");
+System.out.println(co);
 
   	if(id != null)
   	{
   		char who = id.charAt(0);
   		if(who=='a')
-   	{%>
+   	{
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -67,6 +72,7 @@ String pw = (String)session.getAttribute("admin_pw");
 			<li class="nav-item"><a class="nav-link" href="hospitalInfoTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span>
 			</a></li>
+			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
@@ -79,10 +85,9 @@ String pw = (String)session.getAttribute("admin_pw");
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active"><a class="nav-link" href="faqTab.jsp">
+			<li class="nav-item"><a class="nav-link" href="faqTab.jsp">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>FAQ 목록</span>
 			</a></li>
-
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
@@ -102,11 +107,10 @@ String pw = (String)session.getAttribute("admin_pw");
 						<div class="collapse-divider"></div>
 					</div>
 				</div></li>
-			
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<li class="nav-item"><a class="nav-link" href="announcementCreate.jsp">
+			<li class="nav-item active"><a class="nav-link" href="announcementCreate.jsp">
 					<i class="fas fa-fw fa-cog"></i> <span>공지사항 등록</span>
 			</a></li>
 			
@@ -117,7 +121,6 @@ String pw = (String)session.getAttribute("admin_pw");
 			<li class="nav-item"><a class="nav-link" href="faqCreate.jsp">
 					<i class="fas fa-fw fa-cog"></i> <span>FAQ 등록</span>
 			</a></li>
-
 		</ul>
 		<!-- End of Sidebar -->
 		<!-- Content Wrapper -->
@@ -198,71 +201,50 @@ String pw = (String)session.getAttribute("admin_pw");
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">FAQ 목록</h1>
-					<p class="mb-4">등록되어 있는 FAQ를 확인할 수 있습니다.</p>
+					<h1 class="h3 mb-2 text-gray-800">FAQ 수정</h1>
+					<p class="mb-4">홈페이지에 FAQ를 수정할 수 있습니다.</p>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">FAQ 목록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">FAQ 수정</h6>
 						</div>
+						
 						<div class="card-body">
 							<div class="table-responsive">
-
-								<%
-        						Class.forName("com.mysql.jdbc.Driver");
+							<% 
+							 
+							
 								try{
-									Connection conn = DriverManager.getConnection
-											("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root", "1234");
-									Statement stmt = conn.createStatement();	
-									ResultSet rs = stmt.executeQuery
-											("SELECT header, public, admin_id, count FROM faq"); 
-								%>
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>관리자 아이디</th>
-											<th>제목</th>
-											<th>등록 시간</th>
-											<th>삭제</th>
-											<th>수정</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>관리자 아이디</th>
-											<th>제목</th>
-											<th>등록 시간</th>
-											<th>삭제</th>
-											<th>수정</th>
-										</tr>
-									</tfoot>
-
-									<!--여기부터 DB에서 값 읽어와서 보여줘야함-->
-
-									<tbody>
-									<%
-									
-									while(rs.next()){
-									%>	<tr>
-											<th><%=rs.getString("admin_id") %></th>
-											<td><%=rs.getString("header") %></a></td>
-											<td><%=rs.getString("count") %></a></td>
-											<td><a onclick="return confirm('공지사항을 삭제합니다.')" href="../Back-End/faqDelete.jsp?co=<%=rs.getString("count")%>">삭제</a></td>
-											<!-- <td><a href="../Front-End/faqDetail.jsp">수정</a></td> -->
-											<td><a id="count" name="count" value="<%=rs.getString("count") %>" href="../Front-End/faqDetail.jsp?co=<%=rs.getString("count")%>">수정</a></td>
-										</tr>
-									<%
-									}	
-									%>
-									</tbody>
-								</table><%
-								rs.close();
-								stmt.close();
-								conn.close();}catch(SQLException e){
-									out.println("err:"+e.toString());
-								}
-								%>
+								Class.forName("com.mysql.jdbc.Driver"); 
+								Connection conn=DriverManager.getConnection
+								("jdbc:mysql://localhost:3306/info?serverTimezone=UTC", "root" , "1234" ); 
+								String sql="SELECT * FROM faq WHERE count=?" ; 
+								PreparedStatement pstmt=conn.prepareStatement(sql); 
+								pstmt.setString(1, co); 
+								ResultSet rs=pstmt.executeQuery(); %>
+								
+									<!-- Page Heading -->
+									<% while(rs.next()){ %>
+										<% System.out.println(rs.getString("public"));%>
+										<form method="post"	action="../Back-End/faqUpdate.jsp">
+											<label>제목</label>
+											<input type="text" class="table table-bordered" width="100%" id="public_header" name="public_header" value="<%=rs.getString("header") %>" required>
+											<label>등록 시간</label>
+											<input type="text" class="table table-bordered" readonly width="100%" id="public_header" name="public_co" value="<%=rs.getString("count") %>">
+											<label>내용</label>
+											<textarea style="resize: none; width: 100%; height: 100%;" id="public_text" name="public_text" required><%=rs.getString("public") %></textarea>
+											<div style="text-align: right;">
+												<a href="hospitalInfoTab.jsp" class="btn btn-primary pull-right">취소</a>
+												<button type="submit" name="" class="btn btn-primary pull-right">수정</button>
+											</div>											
+										</form>
+										
+								<% }rs.close(); pstmt.close(); conn.close(); 
+								}catch(ClassNotFoundException e){
+									out.println(e); }
+								catch(SQLException e){ out.println("err:"+e.toString()); } %>
+								
 							</div>
 						</div>
 					</div>

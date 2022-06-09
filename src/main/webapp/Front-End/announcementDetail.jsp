@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import ="java.text.SimpleDateFormat"%>
-<%@ page import="java.sql.*"%><%
+<%@ page import="java.sql.*"%>
+<%
 request.setCharacterEncoding("UTF-8");
 
 String id = (String)session.getAttribute("admin_id");
@@ -14,7 +15,8 @@ System.out.println(co);
   	{
   		char who = id.charAt(0);
   		if(who=='a')
-   	{%>
+   	{
+%>
 <!DOCTYPE html>
 <html lang="ko">
 

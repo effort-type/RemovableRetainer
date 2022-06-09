@@ -191,7 +191,7 @@ String pw = (String)session.getAttribute("admin_pw");
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">FQA 등록</h1>
+					<h1 class="h3 mb-2 text-gray-800">FAQ 등록</h1>
 					<p class="mb-4">홈페이지에 FAQ을 등록할 수 있습니다.</p>
 
 					<!-- DataTales Example -->
